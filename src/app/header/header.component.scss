@@ -1,0 +1,20 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.header {
+    background: rgb(40, 62, 74);
+    padding: 15px 0;
+    margin-bottom: 50px;
+    .logo {
+        color: $grey;
+        font-size: 28px;
+        font-weight: bold;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    .nowTime {
+        font-size: 24px;
+        color: $grey;
+    }
+}

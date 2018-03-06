@@ -1,0 +1,59 @@
+<div class="container block">
+  <h2 class="title">Погода у місті {{city}}</h2>
+  <div class="row justify-content-center">
+    <div class="col-sm-2 day" *ngFor="let day of arrDays" [hidden]="!day.list.length" [ngClass]="{'day__active': day.date.active}" (click)="onIndexDay(day.date.id)">
+      <div class="day__name">{{day.date.day}}</div>
+      <div class="day__number">{{day.date.number}}</div>
+      <div class="day__month">{{day.date.month}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 content">
+      <table class="table" *ngIf="arrDays[indexDay].list">
+        <tr>
+          <td></td>
+          <td class="table__time" *ngFor="let obj of arrDays[indexDay].list">{{obj.time}}</td>
+        </tr>
+        <tr>
+          <td>Характеристики погоди</td>
+          <td *ngFor="let obj of arrDays[indexDay].list"><img src="http://openweathermap.org/img/w/{{obj.weather[0].icon}}.png" alt="">
+          <div>{{obj.weather[0].description}}</div></td>
+        </tr>
+        <tr>
+          <td>Температура, &deg;С</td>
+          <td class="table__temp" *ngFor="let obj of arrDays[indexDay].list">{{obj.main.temp}}&deg;</td>
+        </tr>
+        <tr>
+          <td>Тиск, мм</td>
+          <td *ngFor="let obj of arrDays[indexDay].list">{{obj.main.pressure}}</td>
+        </tr>
+        <tr>
+          <td>Вологість, %</td>
+          <td *ngFor="let obj of arrDays[indexDay].list">{{obj.main.humidity}}</td>
+        </tr>
+        <tr>
+          <td>Вітер м/сек</td>
+          <td *ngFor="let obj of arrDays[indexDay].list">{{obj.wind.speed}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+  
+
+<div class="container block" *ngIf="lineChartData">
+  <h2 class="title">Середнє значення температури за день, протягом п'яти - шести днів</h2>
+  <div class="row">
+      <div class="col">
+          <canvas
+              baseChart
+              [data]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+      </div>
+  </div>
+</div>

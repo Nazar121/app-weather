@@ -1,0 +1,47 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+.footer {
+    padding: 50px 0;
+    border-top: 1px solid $grey;
+    font-size: 20px;
+    text-align: center;
+    .contact {
+        display: inline-flex;
+        .contact__title {}
+        .contact__icons {
+            @include transition(2s);
+            i {
+                font-size: 40px;
+                cursor: pointer;
+                margin: 0 5px;
+                @include transition(0.3s);
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+            .fa-facebook-square:hover {
+                color: rgb(59, 89, 152);
+            }
+            .fa-twitter-square:hover {
+                color: rgb(86, 215, 254);
+            }
+            .fa-google-plus-square:hover {
+                color: rgb(157, 5, 3);
+            }
+            .fa-youtube-square:hover {
+                color: rgb(220, 45, 41);
+            }
+        }
+    }
+    .link {
+        color: black;
+        &:hover {
+            color: blue;
+            text-decoration: none;
+        }
+    }
+    .copyright {
+        font-size: 16px;
+    }
+}

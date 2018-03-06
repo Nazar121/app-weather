@@ -1,0 +1,60 @@
+<div class="container block">
+  <div class="row">
+    <div class="col-sm-6 col-md-7 col-lg-8">
+        <h1>Погода у місті</h1>
+        <form #search="ngForm" class="justify-content-center" enctype="multipart/form-data" (ngSubmit)="onSearch()">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input
+              type="text"
+              name="country"
+              list="countries"
+              id="country"
+              class="form-control"
+              placeholder="Country"
+              [(ngModel)]="searchCountry" 
+              pattern="^[a-zA-Z\s-]+$"
+              (blur)="getCityList()"
+              required/>
+            <datalist id="countries" class="datalist">
+                <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+            </datalist>
+          </div>
+
+          <div class="form-group">
+            <label for="country">Cities</label>
+            <input
+              type="text"
+              name="searchCity"
+              list="cities"
+              id="searchCity"
+              class="form-control"
+              placeholder="City"
+              [(ngModel)]="searchCity" 
+              pattern="^[a-zA-Z\s-]+$"
+              required/>
+            <datalist id="cities" class="datalist">
+                <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
+            </datalist>
+          </div>
+          <!--<div class="form-group">
+            <label for="searchCity">City</label>
+            <input
+              type="text"
+              name="searchCity"
+              class="form-control"
+              id="searchCity"
+              placeholder="City"
+              [(ngModel)]="searchCity"
+              required>
+          </div>-->
+          <button type="submit" [disabled]="!search.form.valid" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <div class="col-sm-6 col-md-5 col-lg-4">
+        <app-current-day [searchCity]="searchCity"></app-current-day>
+    </div>
+  </div>
+</div>
+
+<app-five-days [searchCity]="searchCity"></app-five-days>

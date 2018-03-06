@@ -1,0 +1,59 @@
+<div class="currentDay" *ngIf="currentDay">
+  <div class="date">
+      <div class="date__day">{{currentDay_day}}</div>
+      <div class="date__number">{{currentDay_date}}</div>
+      <div class="date__month">{{currentDay_month}}</div>
+      <div>{{currentDay_year}}</div>
+  </div>
+
+  <div class="weather" [ngSwitch]="select" *ngIf="currentDay">
+
+    <!-- Selected -->
+    <div class="select">
+      <span (click)="onSelect('info1')" [ngClass]="{'select__active': select === 'info1'}"></span>
+      <span (click)="onSelect('info2')" [ngClass]="{'select__active': select === 'info2'}"></span>
+    </div>
+
+    <!-- Info1 -->
+    <div class="info1" *ngSwitchCase="'info1'">
+        <div class="info1__temp">{{currentDay_temp}}&deg;</div>
+        <div class="info1__city">{{currentDay_city}}</div>
+        <div>
+            <img [src]="currentDay_img" class="info1__icon" alt="">
+            <div class="info1__description">{{currentDay_desc}}</div>
+        </div>
+    </div>
+
+    <!-- Info2 -->
+    <div class="info2" *ngSwitchCase="'info2'">
+      <div>
+          <div class="info2__temperature">
+            <div class="temperature__img">
+              <img src="../../assets/thermometer.png" alt="temperature">
+            </div>
+            <div class="temperature__tmp">
+              <div>Макс. {{currentDay_max_temp}}&deg;</div>
+              <div>Мін. {{currentDay_min_temp}}&deg;</div>
+            </div>
+          </div>
+    
+          <div class="info2__pressure">
+            <div>Тиск</div>
+            <div>{{currentDay_pressure}} мм</div>
+          </div>
+      </div>
+      <div>
+          <div class="info2__humidity">
+            <div>Вологісь</div>
+            <div>{{currentDay_humidity}} %</div>
+          </div>
+    
+          <div class="info2__wind">
+            <div>Вітер</div>
+            <div>{{currentDay_wind}} м/сек</div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
