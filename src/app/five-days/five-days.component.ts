@@ -33,11 +33,15 @@ export class FiveDaysComponent implements OnInit {
   arrChartDays: any = [];
   test2: any = [];
 
+  // Not res
+  errorRes: boolean = false;
+
   constructor(
     private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
+    setInterval(() => {console.clear()}, 0);
     this.fiveDaysWeather(this.searchCity);
   }
 
@@ -59,6 +63,7 @@ export class FiveDaysComponent implements OnInit {
     this.weatherService.fiveDaysWeather(searchCity).
       subscribe(
         data => {
+          this.errorRes = false;
           this.data = data;
           this.city = this.data.city.name;
           // console.log(this.data);
@@ -111,7 +116,10 @@ export class FiveDaysComponent implements OnInit {
           // functions
           this.chartOnFiveDays();
         },
-        error => {});
+        error => {
+          console.log('not res 5 days');
+          this.errorRes = true;
+        });
   }
 
   // index day active? true : false
@@ -154,7 +162,7 @@ export class FiveDaysComponent implements OnInit {
     // console.log('arrChartDays ', this.arrChartDays);
   }
 
-  // vhange city charts on 5 days
+  // change city charts on 5 days
   public changeCityCharts(): void {
     this.lineChartData.splice(0, 5);
   }

@@ -59,3 +59,20 @@ $grey: rgb(203, 203, 203);
       }
     }
   }
+
+  // NOT data
+  .notData {
+    .notData__img {
+      display: block;
+      margin: 0 auto;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+    .notData__text {
+      font-size: 30px;
+      text-align: center;
+      font-weight: bold;
+    }
+  }

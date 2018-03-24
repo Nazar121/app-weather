@@ -1,13 +1,19 @@
 <div class="container block">
-  <h2 class="title">Погода у місті {{city}}</h2>
-  <div class="row justify-content-center">
+  <!-- Not data -->
+  <div class="notData" *ngIf="errorRes">
+    <img src="./../../assets/not_data.png" class="notData__img" alt="">
+    <div class="notData__text">Результатів не знайдено</div>
+  </div>
+
+  <h2 class="title" *ngIf="!errorRes">Погода у місті {{city}}</h2>
+  <div class="row justify-content-center" *ngIf="!errorRes">
     <div class="col-sm-2 day" *ngFor="let day of arrDays" [hidden]="!day.list.length" [ngClass]="{'day__active': day.date.active}" (click)="onIndexDay(day.date.id)">
       <div class="day__name">{{day.date.day}}</div>
       <div class="day__number">{{day.date.number}}</div>
       <div class="day__month">{{day.date.month}}</div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="!errorRes" style="overflow: auto">
     <div class="col-12 content">
       <table class="table" *ngIf="arrDays[indexDay].list">
         <tr>
@@ -42,8 +48,14 @@
   
 
 <div class="container block" *ngIf="lineChartData">
-  <h2 class="title">Середнє значення температури за день, протягом п'яти - шести днів</h2>
-  <div class="row">
+  <!-- Not data -->
+  <div class="notData" *ngIf="errorRes">
+    <img src="./../../assets/not_data.png" class="notData__img" alt="">
+    <div class="notData__text">Результатів не знайдено</div>
+  </div>
+
+  <h2 class="title" *ngIf="!errorRes">Середнє значення температури за день, протягом п'яти - шести днів</h2>
+  <div class="row" *ngIf="!errorRes">
       <div class="col">
           <canvas
               baseChart

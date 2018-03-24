@@ -30,6 +30,9 @@ export class CurrentDayComponent implements OnInit {
   // select
   select: string = 'info1';
 
+  // Not res
+  errorRes: boolean = false;
+
   constructor(
     private weatherService: WeatherService
   ) { }
@@ -46,6 +49,8 @@ export class CurrentDayComponent implements OnInit {
     this.weatherService.currentDayWeather(searchCity).
     subscribe(
       data => {
+        this.errorRes = false;
+
         const d = new Date();
         this.currentDay = data;
         this.currentDay_day = this.weatherService.getDays()[d.getDay()];
@@ -66,7 +71,9 @@ export class CurrentDayComponent implements OnInit {
 
         console.log('current day weather ', this.currentDay);
       },
-      error => {});
+      error => {
+        this.errorRes = true;
+      });
   }
 
 }
