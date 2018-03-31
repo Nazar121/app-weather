@@ -1,22 +1,30 @@
 <div class="container block">
   <div class="row">
     <div class="col-sm-6 col-md-7 col-lg-8">
-        <h1>Погода у місті</h1>
+        <h1>Погода у місті ...</h1>
         <form #search="ngForm" class="justify-content-center" enctype="multipart/form-data" (ngSubmit)="onSearch()">
           <div class="form-group">
             <label for="country">Country</label>
-            <input
-              type="text"
-              name="country"
-              list="countries"
-              id="country"
-              class="form-control"
-              placeholder="Country"
-              [(ngModel)]="searchCountry" 
-              pattern="^[a-zA-Z\s-]+$"
-              (blur)="getCityList()"
-              (ngModelChange)="searchCity=''; cities.length = 0"
-              required/>
+            <div class="required">
+              <input
+                type="text"
+                name="country"
+                list="countries"
+                id="country"
+                class="form-control"
+                placeholder="Country"
+                (ngModelChange)="searchCity=''; cities.length = 0"
+                [(ngModel)]="searchCountry"
+                #searchCountryV="ngModel"
+                pattern="^([a-zA-Z\s])+$"
+                (blur)="getCityList()"
+                required/>
+              <div class="required__symbol">*</div>
+            </div>
+            <div class="alert alert-danger" *ngIf="(searchCountryV.touched || searchCountryV.dirty) && searchCountryV.errors">
+              <span *ngIf="searchCountryV.errors.required">Поле є обов'язковим</span>
+              <span *ngIf="searchCountryV.errors.pattern">Будь ласка, не вводьте числові значення</span>
+          </div>
             <datalist id="countries" class="datalist">
                 <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
             </datalist>
@@ -24,17 +32,20 @@
 
           <div class="form-group">
             <label for="country">Cities <i class="fa fa-cog fa-spin" *ngIf="cities.length === 0" aria-hidden="true" style="font-size:24px"></i></label>
-            <input
-              type="text"
-              name="searchCity"
-              [readonly]="cities.length === 0"
-              list="cities"
-              id="searchCity"
-              class="form-control"
-              placeholder="City"
-              [(ngModel)]="searchCity" 
-              pattern="^[a-zA-Z\s-]+$"
-              required/>
+            <div class="required">
+              <input
+                type="text"
+                name="searchCity"
+                [readonly]="cities.length === 0"
+                list="cities"
+                id="searchCity"
+                class="form-control"
+                placeholder="City"
+                [(ngModel)]="searchCity" 
+                pattern="^[a-zA-Z\s-]+$"
+                required/>
+              <div class="required__symbol">*</div>
+            </div>
             <datalist id="cities" class="datalist">
                 <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
             </datalist>
@@ -54,9 +65,9 @@
         </form>
     </div>
     <div class="col-sm-6 col-md-5 col-lg-4">
-        <app-current-day [searchCity]="searchCity"></app-current-day>
+        <app-current-day [search]="{searchCity: searchCity, countryCode: countryCode}"></app-current-day>
     </div>
   </div>
 </div>
 
-<app-five-days [searchCity]="searchCity"></app-five-days>
+<app-five-days [search]="{searchCity: searchCity, countryCode: countryCode}"></app-five-days>

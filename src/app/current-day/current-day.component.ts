@@ -9,7 +9,10 @@ import { WeatherService } from '../_services/weather.service';
 })
 export class CurrentDayComponent implements OnInit {
 
-  @Input() searchCity: string;
+  @Input() search: any;
+
+  searchCity: string;
+  countryCode: string;
 
   // current day
   currentDay: any = {};
@@ -38,15 +41,17 @@ export class CurrentDayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.onCurrentDayWeather(this.searchCity);
+    this.searchCity = this.search.searchCity;
+    this.countryCode = this.search.countryCode;
+    this.onCurrentDayWeather(this.search);
   }
 
   onSelect(value) {
     this.select = value;
   }
 
-  onCurrentDayWeather(searchCity) {
-    this.weatherService.currentDayWeather(searchCity).
+  onCurrentDayWeather(search) {
+    this.weatherService.currentDayWeather(search).
     subscribe(
       data => {
         this.errorRes = false;
@@ -69,7 +74,7 @@ export class CurrentDayComponent implements OnInit {
         this.currentDay_humidity = this.currentDay.main.humidity;
         this.currentDay_wind = this.currentDay.wind.speed;
 
-        console.log('current day weather ', this.currentDay);
+        // console.log('current day weather ', this.currentDay);
       },
       error => {
         this.errorRes = true;

@@ -11,6 +11,11 @@ $grey: rgb(203, 203, 203);
   box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
 }
 
+input {
+    cursor: pointer;
+}
+
+
 button{
     font-size: 18px;
     font-weight: 300;
@@ -20,12 +25,28 @@ button{
         color:white;
         border-color:#9b9b9b;
         &:hover{
-            cursor: default;
+            cursor: not-allowed;
         }
     }
     &:hover{
         cursor: pointer;
     }
+}
+
+.required {
+    position: relative;
+    .required__symbol {
+        position: absolute;
+        top: 7px;
+        right: 35px;
+        font-size: 22px;
+    }
+}
+
+.btn-primary:disabled {
+    background: #9b9b9b;
+    color:white;
+    border-color:#9b9b9b;
 }
 
     .hour {

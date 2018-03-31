@@ -12,7 +12,10 @@ export class FiveDaysComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
-  @Input() searchCity: string;
+  @Input() search: any;
+
+  searchCity: string;
+  countryCode: string;
 
   // lineChart
   // public lineChartData: Array<any> = [[6, 10, 0, -0, -1]];
@@ -41,8 +44,10 @@ export class FiveDaysComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    setInterval(() => {console.clear()}, 0);
-    this.fiveDaysWeather(this.searchCity);
+    this.searchCity = this.search.searchCity;
+    this.countryCode = this.search.countryCode;
+    // setInterval(() => {console.clear()}, 0);
+    this.fiveDaysWeather(this.search);
   }
 
   test() {
@@ -58,9 +63,9 @@ export class FiveDaysComponent implements OnInit {
   }
 
   // weather on 5 days
-  fiveDaysWeather(searchCity) {
+  fiveDaysWeather(search) {
     this.arrDays = [];
-    this.weatherService.fiveDaysWeather(searchCity).
+    this.weatherService.fiveDaysWeather(search).
       subscribe(
         data => {
           this.errorRes = false;
@@ -85,23 +90,27 @@ export class FiveDaysComponent implements OnInit {
               month: this.weatherService.getMonth()[date.getMonth()]
             };
             // default active day
-            console.log('i ', i);
-            if ( i === 1 ) {
-              if ( this.arrDays[i].date.id ) {
-                this.arrDays[i].date.active = true;
-                this.indexDay = i;
-              } else {
-                this.arrDays[i].date.active = false;
-                bool = true;
-              }
-            } else {
-              if ( bool ) {
-                this.arrDays[i].date.active = true;
-                this.indexDay = i;
-                bool = false;
-              } else {
-                this.arrDays[i].date.active = false;
-              }
+            // console.log('i ', i);
+            // if ( i === 1 ) {
+            //   if ( this.arrDays[i].date.id ) {
+            //     this.arrDays[i].date.active = true;
+            //     this.indexDay = i;
+            //   } else {
+            //     this.arrDays[i].date.active = false;
+            //     bool = true;
+            //   }
+            // } else {
+            //   if ( bool ) {
+            //     this.arrDays[i].date.active = true;
+            //     this.indexDay = i;
+            //     bool = false;
+            //   } else {
+            //     this.arrDays[i].date.active = false;
+            //   }
+            // }
+            if ( i === 0 ) {
+              this.arrDays[i].date.active = true;
+              this.indexDay = i;
             }
             // set property time
             obj.time = date.getHours() + ':00';
@@ -112,7 +121,7 @@ export class FiveDaysComponent implements OnInit {
             // push object with the weather this day
             this.arrDays[i].list.push(obj);
           });
-           console.log('arrDays ', this.arrDays);
+           // console.log('arrDays ', this.arrDays);
           // functions
           this.chartOnFiveDays();
         },

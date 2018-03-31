@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { WeatherService } from '../_services/weather.service';
 import { FiveDaysComponent } from '../five-days/five-days.component';
 import { CurrentDayComponent } from '../current-day/current-day.component';
+import { retry } from 'rxjs/operator/retry';
 
 @Component({
   selector: 'app-search',
@@ -14,9 +15,10 @@ export class SearchComponent implements OnInit {
   @ViewChild(FiveDaysComponent) FiveDaysComponent: FiveDaysComponent;
   @ViewChild(CurrentDayComponent) CurrentDayComponent: CurrentDayComponent;
 
-  // search
+  // search deafault value
   searchCountry: string = 'Ukraine';
-  searchCity: string = 'lviv';
+  searchCity: string = 'Lviv';
+  countryCode: string = 'UA';
 
   // data
   countries: any = [];
@@ -31,9 +33,15 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    this.FiveDaysComponent.fiveDaysWeather(this.searchCity);
+    this.cities.map(obj => {
+      if ( obj.name.toLowerCase() === this.searchCity.toLowerCase() ) {
+        this.searchCity = this.searchCity;
+        this.countryCode = obj.country;
+      }
+    });
+    this.FiveDaysComponent.fiveDaysWeather({searchCity: this.searchCity, countryCode: this.countryCode});
     this.FiveDaysComponent.changeCityCharts();
-    this.CurrentDayComponent.onCurrentDayWeather(this.searchCity);
+    this.CurrentDayComponent.onCurrentDayWeather({searchCity: this.searchCity, countryCode: this.countryCode});
   }
 
   getCountryList() {
@@ -56,13 +64,18 @@ export class SearchComponent implements OnInit {
       if ( obj.name === this.searchCountry ) {
         country.name = obj.name;
         country.code = obj.code;
+        this.searchCity = this.searchCity;
+        this.countryCode = country.code;
+        return;
+      } else {
+        this.countryCode = '';
       }
     });
     this.weatherService.getCityList(country)
       .subscribe(
         res => {
           this.cities = res;
-          console.log('cities ', this.cities);
+          // console.log('cities ', this.cities);
       },
       error => {});
   }
