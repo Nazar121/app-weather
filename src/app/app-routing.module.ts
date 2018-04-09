@@ -7,9 +7,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' },
   { path: 'home', loadChildren: 'app/home/home.module#HomeModule'},
-  { path: 'news', loadChildren: 'app/news/news.module#NewsModule' }
+  { path: 'news', loadChildren: 'app/news/news.module#NewsModule' },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

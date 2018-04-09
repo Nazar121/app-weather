@@ -23,8 +23,8 @@
             </div>
             <div class="alert alert-danger" *ngIf="(searchCountryV.touched || searchCountryV.dirty) && searchCountryV.errors">
               <span *ngIf="searchCountryV.errors.required">Поле є обов'язковим</span>
-              <span *ngIf="searchCountryV.errors.pattern">Будь ласка, не вводьте числові значення</span>
-          </div>
+              <span *ngIf="searchCountryV.errors.pattern">Будь ласка вводьте символи з <b><a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82" target="_blank">"Латинського алфавіту"</a></b></span>
+            </div>
             <datalist id="countries" class="datalist">
                 <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
             </datalist>
@@ -42,9 +42,14 @@
                 class="form-control"
                 placeholder="City"
                 [(ngModel)]="searchCity" 
-                pattern="^[a-zA-Z\s-]+$"
+                #searchCityV="ngModel"
+                pattern="^([a-zA-Z\s])+$"
                 required/>
               <div class="required__symbol">*</div>
+            </div>
+            <div class="alert alert-danger" *ngIf="(searchCityV.touched || searchCityV.dirty) && searchCityV.errors">
+              <span *ngIf="searchCityV.errors.required">Поле є обов'язковим</span>
+              <span *ngIf="searchCityV.errors.pattern">Будь ласка вводьте символи з <b><a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82" target="_blank">"Латинського алфавіту"</a></b></span>
             </div>
             <datalist id="cities" class="datalist">
                 <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
