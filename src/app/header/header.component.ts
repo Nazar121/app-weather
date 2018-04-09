@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-// import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-header',
@@ -27,5 +26,8 @@ export class HeaderComponent implements OnInit {
     }, 1000);
   }
 
+  reload() {
+    window.location.reload();
+  }
 
 }

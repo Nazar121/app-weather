@@ -13,8 +13,28 @@
             text-decoration: none;
         }
     }
+    .nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .item {
+            display: block;
+            margin: 0 15px;
+            color: $grey;
+            font-size: 24px;
+            font-weight: bold;
+            @include transition(.5s);
+            &:hover {
+                text-decoration: none;
+                color: white;
+            }
+        }
+        .item--active {
+            color: white;
+        }
+    }
     .nowTime {
-        font-size: 26px;
+        font-size: 24px;
         color: $grey;
         font-weight: bold;
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { WeatherService } from '../_services/weather.service';
+import { WeatherService } from '../../_services/weather.service';
 import { FiveDaysComponent } from '../five-days/five-days.component';
 import { CurrentDayComponent } from '../current-day/current-day.component';
 import { retry } from 'rxjs/operator/retry';

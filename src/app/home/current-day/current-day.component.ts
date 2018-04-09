@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
-import { WeatherService } from '../_services/weather.service';
+import { WeatherService } from '../../_services/weather.service';
 
 @Component({
   selector: 'app-current-day',
