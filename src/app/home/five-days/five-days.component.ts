@@ -111,6 +111,9 @@ export class FiveDaysComponent implements OnInit {
             if ( i === 0 ) {
               this.arrDays[i].date.active = true;
               this.indexDay = i;
+            } else if ( i === 1 ) {
+              this.arrDays[i].date.active = true;
+              this.indexDay = i;
             }
             // set property time
             obj.time = date.getHours() + ':00';

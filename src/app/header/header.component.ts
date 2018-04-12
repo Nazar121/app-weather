@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { min } from 'rxjs/operator/min';
 
 @Component({
   selector: 'app-header',

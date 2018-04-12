@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+// services
+import { NewsService } from '../_services/news.service';
+
 // components
 import { NewsComponent } from './news.component';
+import { NewComponent } from './new/new.component';
 
 const ROUTES: Routes = [
-  { path: '', component: NewsComponent }
+  { path: '', component: NewsComponent },
+  { path: 'new/:idNew', component: NewComponent }
 ];
 
 @NgModule({
@@ -16,7 +21,11 @@ const ROUTES: Routes = [
   ],
   exports: [RouterModule],
   declarations: [
-    NewsComponent
+    NewsComponent,
+    NewComponent
+  ],
+  providers: [
+    NewsService
   ]
 })
 export class NewsModule { }
