@@ -1,8 +1,41 @@
 <section class="news">
   <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div class="block">
+          <form #myForm="ngForm">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Країна</label>
+                    <select name="searchCountry" class="custom-select" [(ngModel)]="searchCountry" (ngModelChange)="changeSearch()">
+                        <option *ngFor="let obj of countries" [value]="obj.en">{{obj.ua}}</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Категорія</label>
+                    <select name="searchCategory" class="custom-select" [(ngModel)]="searchCategory" (ngModelChange)="changeSearch()">
+                        <option *ngFor="let obj of categories" [value]="obj.en">{{obj.ua}}</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="title">Новини</div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="row" *ngIf="news && news.articles">
       <div class="col-lg-6" *ngFor="let obj of news.articles">
-        <div class="new">
+        <div class="new block" [routerLink]="['new/1']">
           <div class="new__img">
             <img [src]="obj.urlToImage ? obj.urlToImage : '../assets/not_data.png'" alt="">
           </div>

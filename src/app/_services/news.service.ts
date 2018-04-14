@@ -10,10 +10,10 @@ export class NewsService {
     private http: Http
   ) { }
 
-  getNews() {
+  getNews(data) {
     const endpoints = 'top-headlines';
-    const country = 'ua';
-    const category = 'business';
+    const country = data.code;
+    const category = data.category;
     const apiKey = '34c2d6a3a7f24018ba488d4bbbe0f7d1';
     // 
       return this.http.get(`https://newsapi.org/v2/${endpoints}?country=${country}&category=${category}&apiKey=${apiKey}`)

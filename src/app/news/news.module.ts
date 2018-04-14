@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 // services
 import { NewsService } from '../_services/news.service';
@@ -17,6 +18,7 @@ const ROUTES: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(ROUTES)
   ],
   exports: [RouterModule],
