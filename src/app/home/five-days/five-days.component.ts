@@ -46,7 +46,7 @@ export class FiveDaysComponent implements OnInit {
   ngOnInit() {
     this.searchCity = this.search.searchCity;
     this.countryCode = this.search.countryCode;
-    // setInterval(() => {console.clear()}, 0);
+    setInterval(() => {console.clear()}, 0);
     this.fiveDaysWeather(this.search);
   }
 

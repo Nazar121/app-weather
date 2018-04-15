@@ -1,3 +1,32 @@
-<p>
-  new works!
-</p>
+<section class="new">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="block">
+          <div class="title">{{currentNew.title}}</div>
+          <div class="published">{{currentNew.publishedAt | date:'fullDate'}}</div>
+          <div class="icons">
+            <div>
+              <div class="icon icon--facebook"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+              <div class="icon icon--twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+              <div class="icon icon--email"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+            </div>
+            <div>
+              <a [href]="currentNew.url" target="_blanck" class="author">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                <div>
+                  <div>{{currentNew.author}}</div>
+                  <div>Original</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="img">
+            <img [src]="currentNew.urlToImage ? currentNew.urlToImage : '../assets/not_data.png'" alt="">
+          </div>
+          <div class="description">{{currentNew.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

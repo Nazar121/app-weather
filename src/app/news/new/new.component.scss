@@ -1,0 +1,105 @@
+@import '../../mixins';
+$grey: rgb(203, 203, 203);
+
+.block {
+    background: white;
+    border: 1px solid $grey;
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+    box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+}
+
+.new {
+    min-height: 75vh;
+    font-family: sans-serif;
+    color: #283e4a;
+    .title {
+        font-size: 36px;
+        margin-bottom: 15px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .published {
+        margin: 15px 0;
+    }
+    .icons {
+        display: flex;
+        justify-content: space-between;
+        &>div {
+            display: inline-flex;
+        }
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            margin: 0 10px 10px 0;
+            border-radius: 50%;
+            cursor: pointer;
+            @include transition(.3s);
+            i {
+                display: block;
+                font-size: 24px;
+                color: white;
+            }
+            &:hover {
+                opacity: .7;
+            }
+        }
+        .icon--facebook {
+            background: rgb(34, 99, 159);
+        }
+        .icon--twitter {
+            background: rgb(0, 172, 223);
+        }
+        .icon--email {
+            background: rgb(249, 34, 34);
+        }
+        .author {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            color: rgb(249, 34, 34);
+            text-decoration: none;
+            @include transition(.5s);
+            &:hover {
+                border: none;
+                transform: scale(1.1);
+            }
+            * {
+                display: block;
+            }
+            &>* {
+                padding: 0 10px;
+            }
+            i {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                font-size: 26px;
+                color: white;
+                background: rgb(34, 99, 159);
+            }
+        }
+    }
+    .img {
+        img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+            margin: 0 auto;
+        }
+    }
+    .description {
+        margin: 15px 0 0 0;
+        font-size: 19px;
+        line-height: 28px;
+    }
+}

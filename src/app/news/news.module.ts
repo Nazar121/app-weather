@@ -12,7 +12,8 @@ import { NewComponent } from './new/new.component';
 
 const ROUTES: Routes = [
   { path: '', component: NewsComponent },
-  { path: 'new/:idNew', component: NewComponent }
+  { path: 'new/:new', component: NewComponent },
+  { path: '**', redirectTo: 'news' }
 ];
 
 @NgModule({
