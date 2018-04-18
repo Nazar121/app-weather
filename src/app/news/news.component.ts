@@ -11,7 +11,12 @@ import { NewsService } from '../_services/news.service';
 })
 export class NewsComponent implements OnInit {
 
+  // news and pagination
   news: any;
+  countPages: any = [];
+  numberPage: number;
+
+  // filter news
   countries: any = [
     { code: 'us', en: 'United States', ua: 'Сполучені Штати' },
     { code: 'gb', en: 'United Kingdom', ua: 'Об"єднане Королівство' },
@@ -36,6 +41,13 @@ export class NewsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // SET number page
+    if ( this.newsService.getNumberPage() ) {
+      this.numberPage = this.newsService.getNumberPage();
+    } else {
+      this.numberPage = 1;
+    }
+
     // FILTER news
     if (this.newsService.getFilterNews()) {
       this.searchCountry = this.newsService.getFilterNews().searchCountry;
@@ -57,6 +69,9 @@ export class NewsComponent implements OnInit {
         obj['id'] = obj.title.replace(/\s/g, "-");
         obj['id'] = obj['id'].toLowerCase();
       });
+
+      // pagination
+      this.pagination();
     }, error => { console.log(error); });
   }
 
@@ -84,6 +99,54 @@ export class NewsComponent implements OnInit {
     // console.log('new ', obj);
     this.newsService.setCurrentNew(obj);
     this.router.navigate([`${this.router.url}/new/${obj.id}`]);
+  }
+
+  // Pagination
+  pagination() {
+    const maxNewsOnPage = 4;
+    this.changePage(this.numberPage);
+    this.countPages = [];
+    let count = {
+      pages: 0,
+      news: []
+    };
+    let index = 1;
+    this.news.articles.map((obj) => {
+      count.news.push(index);
+      count.pages = index;
+      obj['page'] = index;
+      if ( count.news.length === maxNewsOnPage ) {
+        index++;
+        count.news = [];
+      }
+    });
+    for(let i =1; i <= count.pages; i++) {
+      this.countPages.push(i);
+    }
+  }
+
+  // change page
+  changePage(page) {
+    window.scrollTo(0, 0);
+    if ( typeof page === 'string' ) {
+      switch(page) {
+        case '+1':
+          ( this.numberPage === this.countPages.length ) ? this.numberPage = this.countPages.length : this.numberPage++;
+          break;
+        case '-1':
+          ( this.numberPage === 1 ) ? this.numberPage = 1 : this.numberPage--;
+          break;
+        default:
+          this.numberPage = 1;
+          break;
+      }
+    } else if ( typeof page === 'number' ) {
+      this.numberPage = +page;
+    } else {
+      console.error(`Page isn't a number type!!!`);
+      this.numberPage = 1;
+    }
+    this.newsService.setNumberPage(this.numberPage);
   }
 
 }

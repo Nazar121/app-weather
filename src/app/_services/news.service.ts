@@ -42,12 +42,28 @@ export class NewsService {
 
   // SET FILTER
   setFilterNews(data) {
-    localStorage.setItem('filterNews', JSON.stringify(data));
+    sessionStorage.setItem('filterNews', JSON.stringify(data));
   }
 
   // GET FILTER
   getFilterNews() {
-    return JSON.parse(localStorage.getItem('filterNews'));
+    return JSON.parse(sessionStorage.getItem('filterNews'));
+  }
+
+  // SET NumberPage
+  setNumberPage(data) {
+    sessionStorage.setItem('numberPage', JSON.stringify(data));
+  }
+
+  // GET FILTER
+  getNumberPage() {
+    return JSON.parse(sessionStorage.getItem('numberPage'));
+  }
+
+  // CLEAR
+  clear() {
+    sessionStorage.removeItem('filterNews');
+    sessionStorage.removeItem('numberPage');
   }
 
 }
