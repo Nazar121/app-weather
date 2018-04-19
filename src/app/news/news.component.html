@@ -33,6 +33,9 @@
       </div>
     </div>
 
+    <!-- Spinner -->
+    <app-spinner *ngIf="!news"></app-spinner>
+
     <div class="row" *ngIf="news && news.articles">
       <div class="col-lg-6" *ngFor="let obj of news.articles" (click)="currentNew(obj)">
         <div class="new block" *ngIf="obj.page == numberPage">
@@ -44,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="news && news.articles">
       <div class="col">
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-lg justify-content-center">

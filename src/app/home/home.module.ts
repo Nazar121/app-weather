@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 // ng2-chars
 import { ChartsModule } from 'ng2-charts';
 
+// modules
+import { SharedModule } from '../shared/shared.module';
+
 // components
 import { HomeComponent } from './home.component';
 import { FiveDaysComponent } from './five-days/five-days.component';
@@ -21,7 +24,8 @@ const ROUTES: Routes = [
     CommonModule,
     RouterModule.forChild(ROUTES),
     ChartsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports: [
     RouterModule

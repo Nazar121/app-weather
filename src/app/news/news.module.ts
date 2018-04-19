@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+// modules
+import { SharedModule } from '../shared/shared.module';
+
 // services
 import { NewsService } from '../_services/news.service';
 
@@ -20,7 +23,8 @@ const ROUTES: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    SharedModule
   ],
   exports: [RouterModule],
   declarations: [

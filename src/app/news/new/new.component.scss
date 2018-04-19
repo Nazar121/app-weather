@@ -60,22 +60,27 @@ $grey: rgb(203, 203, 203);
         .icon--email {
             background: rgb(249, 34, 34);
         }
+        // author
         .author {
             display: inline-flex;
             justify-content: space-between;
             align-items: center;
             position: relative;
             color: rgb(249, 34, 34);
+            letter-spacing: 1.7px;
             text-decoration: none;
             @include transition(.5s);
+            &:hover .info__bg{
+                width: 100% !important;
+            }
             &:hover {
-                border: none;
-                transform: scale(1.1);
+                color: white;
             }
             * {
                 display: block;
             }
             &>* {
+                height: 100%;
                 padding: 0 10px;
             }
             i {
@@ -84,6 +89,26 @@ $grey: rgb(203, 203, 203);
                 font-size: 26px;
                 color: white;
                 background: rgb(34, 99, 159);
+            }
+            .author__info {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .info__bg {
+                    width: 0;
+                    z-index: 0;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: rgb(34, 99, 159);
+                    @include transition(.3s);
+                }
+                & *:not(.info__bg) {
+                    position: relative;
+                    z-index: 1;
+                }
             }
         }
     }

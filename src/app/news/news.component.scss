@@ -13,6 +13,7 @@ $grey: rgb(203, 203, 203);
     box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
 }
 
+// news
 .news {
     height: 100%;
     min-height: 80vh;
@@ -34,11 +35,11 @@ $grey: rgb(203, 203, 203);
         background: white;
         margin-bottom: 50px;
         cursor: pointer;
-        color: #1a3480;
+        color:#283e4a;
         @include transition(.3s);
         border-radius: 5px;
         &:hover {
-            color: #283e4a;
+            color: #1a3480; 
         }
         &:hover img{
             transform: scale(1.2);
