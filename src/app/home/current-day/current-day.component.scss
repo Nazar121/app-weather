@@ -1,107 +1,92 @@
-.currentDay {
-    text-align: center;
-    color: white;
-    font-family: sans-serif;
-    .date {
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-radius: 5px;
-      overflow: hidden;
-      background: linear-gradient(to bottom, rgb(41, 150, 186), rgb(69, 178, 214));
-      -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-      -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-      .date__day {
-        background: rgb(29, 121, 151);
-        font-size: 20px;
-        padding: 10px 0;
-      }
-      .date__number {
-        font-size: 150px;
-        padding: 0;
-      }
-      .date__month {
-        font-size: 26px;
-      }
-    }
-    .weather {
-      padding: 15px 0;
-      border-radius: 5px;
-      overflow: hidden;
-      background: url('../../../assets/current-day-city.jpg') no-repeat 50% 50%;
-      background-size: cover;
-      -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-      -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-      .select {
-        text-align: center;
-        span {
-          display: inline-block;
-          width: 20px;
-          height: 20px;
-          border: 1px solid white;
-          border-radius: 50%;
-          cursor: pointer;
-          margin-right: 5px;
-          &:last-child {
-            margin-right: 0;
-          }
-        }
-        .select__active {
-          background: white;
-        }
-      }
-      .info1 {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        .info1__temp {
-          font-size: 30px;
-        }
-        .info1__city {
-          font-size: 28px;
-          color: #287993;
-          font-weight: 600;
-        }
-        .info1__description {
-          font-size: 20px;
-        }
-      }
-      .info2 {
-        &>div {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          &:first-child {
-            margin-bottom: 20px;
-          }
-        }
-        .info2__temperature {
-          display: flex;
-          align-items: center;
-          .temperature__img>img {
-            width: 30px;
-            height: 50px;
-          }
-          .temperature__tmp {}
-        }
-      }
-    }
-  }
+@import '../../variables';
+@import '../../mixins';
 
-  // NOT data
-  .notData {
-    .notData__img {
-      display: block;
-      margin: 0 auto;
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      max-height: 100%;
+
+.title {
+  @extend .title;
+}
+
+// NOT data
+.notData {
+  .notData__img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+  .notData__text {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+// --- card --- //
+.card {
+  text-align: center;
+  color: BLACK;
+  font-family: sans-serif;
+}
+
+// --- date --- //
+.date {
+  text-align: left;
+  .date__city {
+    font-size: 30px;
+  }
+}
+
+// --- weather --- //
+.weather {
+  text-align: center;
+  &>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .weather__icon {
+    width: 200px;
+    height: auto;
+  }
+  .weather__temp {
+    font-size: 100px;
+  }
+}
+
+
+
+@media (max-width: 575.98px) {
+  .weather {
+    .weather__icon {
+      width: 100px;
     }
-    .notData__text {
-      font-size: 30px;
-      text-align: center;
-      font-weight: bold;
+    .weather__temp {
+      font-size: 50px;
     }
   }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .weather {
+    .weather__icon {
+      width: 130px;
+    }
+    .weather__temp {
+      font-size: 70px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .weather {
+    .weather__icon {
+      width: 150px;
+    }
+    .weather__temp {
+      font-size: 80px;
+    }
+  }
+}

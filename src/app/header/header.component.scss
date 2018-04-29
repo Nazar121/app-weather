@@ -1,41 +1,56 @@
 @import "../variables.scss";
 @import "../mixins.scss";
 
+.bg-theme {
+    background: $bg-theme;
+}
+
+.bg-theme-navBtn {
+    background: $bg-theme-navBtn;
+}
+
 .header {
-    background: rgb(40, 62, 74);
-    padding: 15px 0;
-    margin-bottom: 50px;
-    .logo {
-        color: $grey;
-        font-size: 28px;
-        font-weight: bold;
-        &:hover {
-            text-decoration: none;
+    padding-bottom: 80px;
+    // --- navbar --- //
+    .navbar {
+        & li:not(.active):hover a {
+            color: rgba(192, 192, 192, .8) !important;
+        }
+        & a {
+            color: white !important;
+        }
+        & .active {
+            color: white !important;
+            background: rgba(192, 192, 192, .2);
         }
     }
-    .nav {
-        display: flex;
+    // --- dropdown --- //
+    .dropdown {
+        display: inline-flex;
         justify-content: center;
         align-items: center;
-        .item {
-            display: block;
-            margin: 0 15px;
-            color: $grey;
+        color: white;
+        i {
             font-size: 24px;
-            font-weight: bold;
-            @include transition(.5s);
+            padding: 5px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            @include transition(.3s);
             &:hover {
-                text-decoration: none;
-                color: white;
+                background: rgba(192, 192, 192, .4);
             }
         }
-        .item--active {
-            color: white;
+        .dropdown-menu * {
+            cursor: pointer;
+            color: black !important;
+            &:hover {
+                background: $bg-theme !important;
+                color: $color-theme !important;
+            }
         }
-    }
-    .nowTime {
-        font-size: 24px;
-        color: $grey;
-        font-weight: bold;
+        .lang-active {
+            background: $bg-theme !important;
+            color: $color-theme !important;
+        }
     }
 }

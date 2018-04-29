@@ -1,4 +1,6 @@
-$grey: rgb(203, 203, 203);
+@import '../../variables'; 
+@import '../../mixins';
+
 .block {
   background: white;
   border: 1px solid $grey;
@@ -15,6 +17,35 @@ input {
     cursor: pointer;
 }
 
+.search {
+    // --- card --- //
+    .card {
+        .cart-myTitle {
+            width: 90%;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+            top: -20px;
+            background: $bg-theme;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+    }
+    form {
+        text-align: left !important;
+        button {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            background: $bg-theme;
+            color: $color-theme;
+            &:hover {
+                background: $bg-theme-hover;
+            }
+        }
+    }
+}
 
 button{
     font-size: 18px;
@@ -61,4 +92,4 @@ button{
     max-height:80px !important;
     overflow-y:auto;
     //display:block !important;
- }
+}

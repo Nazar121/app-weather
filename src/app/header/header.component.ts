@@ -9,26 +9,30 @@ import { min } from 'rxjs/operator/min';
 })
 export class HeaderComponent implements OnInit {
 
-  time: any;
+  lang: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.nowTime();
+    this.lang = 'EN';
   }
 
-  nowTime() {
-    setInterval(() => {
-      let seconds = new Date().getSeconds();
-      let minutes = new Date().getMinutes();
-      let hours = new Date().getHours();
-      this.time = hours + ':' + minutes + ':' + seconds;
-      // console.log(this.time);
-    }, 1000);
-  }
-
-  reload() {
-    window.location.reload();
+  changeLang(lang) {
+    lang = lang.toUpperCase();
+    switch(lang) {
+      case 'EN':
+        this.lang = lang;
+        break;
+      case 'UKR':
+        this.lang = lang;
+        break;
+      case 'RU':
+        this.lang = lang;
+        break;
+      default:
+        this.lang = 'EN';
+        break;
+    }
   }
 
 }

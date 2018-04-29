@@ -1,78 +1,102 @@
-$grey: rgb(203, 203, 203);
+@import '../../variables';
+@import '../../mixins';
 
 .block {
-    background: white;
-    border: 1px solid $grey;
-    padding: 20px 15px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
-    box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
-  }
+  background: white;
+  border: 1px solid $grey;
+  padding: 20px 15px;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+  box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+}
+
+.card {
+  margin-bottom: 30px;
+}
 
 .title {
-    text-align: center;
-    padding: 15px 0;
-  }
+  @extend .title;
+}
 
-  .day {
-    border: 1px solid $grey;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-    font-size: 18px;
-    cursor: pointer;
-      .day__name {}
-      .day__number {
-        font-size: 40px;
-      }
-  }
-  .day__active {
-    transform: scale(1.1);
-    background: $grey;
-    border-radius: 5px;
-    font-weight: bold;
-  }
+.day {
+  border: 1px solid $grey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+    .day__name {}
+    .day__number {
+      font-size: 40px;
+    }
+}
+.day__active {
+  transform: scale(1.1);
+  background: $bg-theme;
+  color: $color-theme;
+  z-index: 1;
+  border-radius: 5px;
+  font-weight: bold;
+}
   
-  .content {
-    //border: 1px solid $grey;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    .table {
-      display: inline-block;
-      td {
-        border: 1px solid $grey;
-        text-align: center;
-        &:first-child {
-          text-align: right;
-        }
-      }
-      .table__time {
-        font-size: 20px;
-        font-weight: bold;
-      }
-      .table__temp {
-        font-size: 18px;
-        font-weight: bold;
-      }
-    }
-  }
-
-  // NOT data
-  .notData {
-    .notData__img {
-      display: block;
-      margin: 0 auto;
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      max-height: 100%;
-    }
-    .notData__text {
-      font-size: 30px;
+.content {
+  //border: 1px solid $grey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  .table {
+    display: inline-block;
+    td {
+      border: 1px solid $grey;
       text-align: center;
+      &:first-child {
+        text-align: right;
+      }
+    }
+    .table__time {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .table__temp {
+      font-size: 18px;
       font-weight: bold;
     }
   }
+}
+
+// NOT data
+.notData {
+  .notData__img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+  .notData__text {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .day {
+    font-size: 15px;
+      .day__number {
+        font-size: 24px;
+      }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .day {
+    font-size: 16px;
+      .day__number {
+        font-size: 28px;
+      }
+  }
+}

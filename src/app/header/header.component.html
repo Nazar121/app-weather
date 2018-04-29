@@ -1,20 +1,29 @@
 <header class="header">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-auto">
-          <a [routerLink]="['/home']" class="logo" (click)="reload()">
-            <img src="../assets/logo.png" width="150px" alt="Weather">
-          </a>
-      </div>
-      <div class="col">
-        <nav class="nav">
-          <a [routerLink]="['/home']" routerLinkActive="item--active" class="item">Головна</a>
-          <a [routerLink]="['/news']" routerLinkActive="item--active" class="item">Новини</a>
-        </nav>
-      </div>
-      <div class="col-auto">
-        <div class="nowTime"><i class="fa fa-clock-o" aria-hidden="true"></i> {{time}}</div>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-theme">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/home']">Weather</a>
+      <button class="navbar-toggler bg-theme-navBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class=" navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/home']">Home</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/news']">News</a>
+          </li>
+        </ul>
+        <div class="dropdown">
+          <div>{{lang}}</div>
+          <div id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" (click)="changeLang('EN')" [ngClass]="{'lang-active': lang === 'EN'}">EN</a>
+            <a class="dropdown-item" (click)="changeLang('UKR')" [ngClass]="{'lang-active': lang === 'UKR'}">UKR</a>
+            <a class="dropdown-item" (click)="changeLang('RU')" [ngClass]="{'lang-active': lang === 'RU'}">RU</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </nav>  
 </header>
