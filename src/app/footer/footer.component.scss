@@ -2,42 +2,47 @@
 @import '../mixins.scss';
 
 .footer {
+    background: $bg-theme;
+    color: $color-theme;
     padding: 50px 0;
     border-top: 1px solid $grey;
     font-size: 20px;
     text-align: center;
     .contact {
         display: inline-flex;
+        flex-wrap: wrap;
         .contact__title {}
         .contact__icons {
             @include transition(2s);
             i {
+                color: white;
                 font-size: 40px;
                 cursor: pointer;
                 margin: 0 5px;
                 @include transition(0.3s);
                 &:hover {
                     transform: scale(1.1);
+                    color: black;
                 }
             }
-            .fa-facebook-square:hover {
-                color: rgb(59, 89, 152);
-            }
-            .fa-twitter-square:hover {
-                color: rgb(86, 215, 254);
-            }
-            .fa-google-plus-square:hover {
-                color: rgb(157, 5, 3);
-            }
-            .fa-youtube-square:hover {
-                color: rgb(220, 45, 41);
-            }
+            // .fa-facebook-square:hover {
+            //     color: rgb(59, 89, 152);
+            // }
+            // .fa-twitter-square:hover {
+            //     color: rgb(86, 215, 254);
+            // }
+            // .fa-google-plus-square:hover {
+            //     color: rgb(157, 5, 3);
+            // }
+            // .fa-youtube-square:hover {
+            //     color: rgb(220, 45, 41);
+            // }
         }
     }
     .link {
-        color: black;
+        color: $color-theme;
         &:hover {
-            color: blue;
+            color: black;
             text-decoration: none;
         }
     }

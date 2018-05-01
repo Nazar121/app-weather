@@ -9,7 +9,7 @@
             Search:
           </div>
           <div class="card-body">
-            <form #search="ngForm" class="justify-content-center" enctype="multipart/form-data" (ngSubmit)="onSearch()">
+            <form #search="ngForm" class="was-validated justify-content-center" enctype="multipart/form-data" (ngSubmit)="onSearch()">
               <div class="form-group">
                 <label for="country">Country</label>
                 <div class="required">
@@ -28,10 +28,16 @@
                     required/>
                   <div class="required__symbol">*</div>
                 </div>
-                <div class="alert alert-danger" *ngIf="(searchCountryV.touched || searchCountryV.dirty) && searchCountryV.errors">
+
+                <div *ngIf="(searchCountryV.touched || searchCountryV.dirty) && searchCountryV.errors">
+                  <div style="color:red;" *ngIf="searchCountryV.errors.required">Поле є обов'язковим</div>
+                  <div style="color:red;" *ngIf="searchCountryV.errors.pattern">Будь ласка вводьте символи з <b><a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82" target="_blank">"Латинського алфавіту"</a></b></div>
+                </div>
+
+                <!-- <div class="alert alert-danger" *ngIf="(searchCountryV.touched || searchCountryV.dirty) && searchCountryV.errors">
                   <span *ngIf="searchCountryV.errors.required">Поле є обов'язковим</span>
                   <span *ngIf="searchCountryV.errors.pattern">Будь ласка вводьте символи з <b><a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82" target="_blank">"Латинського алфавіту"</a></b></span>
-                </div>
+                </div> -->
                 <datalist id="countries" class="datalist">
                     <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
                 </datalist>
@@ -54,10 +60,14 @@
                     required/>
                   <div class="required__symbol">*</div>
                 </div>
-                <div class="alert alert-danger" *ngIf="(searchCityV.touched || searchCityV.dirty) && searchCityV.errors">
+                <div *ngIf="(searchCityV.touched || searchCityV.dirty) && searchCityV.errors">
+                  <span style="color:red;" *ngIf="searchCityV.errors.required">Поле є обов'язковим</span>
+                  <span style="color:red;" *ngIf="searchCityV.errors.pattern">Будь ласка вводьте символи з <b><a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82" target="_blank">"Латинського алфавіту"</a></b></span>
+                </div>
+                <!-- <div class="alert alert-danger" *ngIf="(searchCityV.touched || searchCityV.dirty) && searchCityV.errors">
                   <span *ngIf="searchCityV.errors.required">Поле є обов'язковим</span>
                   <span *ngIf="searchCityV.errors.pattern">Будь ласка вводьте символи з <b><a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82" target="_blank">"Латинського алфавіту"</a></b></span>
-                </div>
+                </div> -->
                 <datalist id="cities" class="datalist">
                     <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
                 </datalist>

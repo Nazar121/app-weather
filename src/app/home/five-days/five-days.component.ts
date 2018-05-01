@@ -75,6 +75,7 @@ export class FiveDaysComponent implements OnInit {
           let i = 0;
           let bool = false;
           this.arrDays.push({date: {}, list: []});
+          let activeDay = true;
           this.data.list.map(obj => {
             let date =  new Date(obj.dt_txt);
             // if time = 00:00, then this is a new day
@@ -108,12 +109,15 @@ export class FiveDaysComponent implements OnInit {
             //     this.arrDays[i].date.active = false;
             //   }
             // }
-            if ( i === 0 ) {
-              this.arrDays[i].date.active = true;
+            if ( i === 0 && this.arrDays[0].date ) {
+              this.arrDays[0].date.active = true;
               this.indexDay = i;
-            } else if ( i === 1 ) {
-              this.arrDays[i].date.active = true;
-              this.indexDay = i;
+              activeDay = false;
+            }
+            if (activeDay) {
+              this.arrDays[1].date.active = true;
+              this.indexDay = 1;
+              activeDay = false;
             }
             // set property time
             obj.time = date.getHours() + ':00';

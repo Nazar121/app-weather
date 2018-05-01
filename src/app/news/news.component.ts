@@ -63,7 +63,7 @@ export class NewsComponent implements OnInit {
   // GET news
   getNews(data) {
     this.newsService.getNews(data).subscribe(res => {
-      // console.log('res ', res);
+      console.log('res ', res);
       this.news = res;
       this.news.articles.map( (obj, index) => {
         obj['id'] = obj.title.replace(/\s/g, "-");

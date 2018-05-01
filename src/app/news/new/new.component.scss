@@ -1,16 +1,8 @@
 @import '../../mixins';
-$grey: rgb(203, 203, 203);
+@import '../../variables';
 
-.block {
-    background: white;
-    border: 1px solid $grey;
-    padding: 20px 15px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
-    box-shadow: 0px 0px 20px 0px rgba(203,203,203,1);
+.card {
+    margin-bottom: 30px;
 }
 
 .new {
@@ -36,8 +28,8 @@ $grey: rgb(203, 203, 203);
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 55px;
-            height: 55px;
+            width: 45px;
+            height: 45px;
             margin: 0 10px 10px 0;
             border-radius: 50%;
             cursor: pointer;
@@ -113,18 +105,86 @@ $grey: rgb(203, 203, 203);
         }
     }
     .img {
-        img {
+        height: 600px;
+        overflow: hidden;
+        .img__yes {}
+        .img__not {
             display: block;
-            width: auto;
-            max-width: 100%;
             height: auto;
+            width: auto;
             max-height: 100%;
-            margin: 0 auto;
+            max-width: 100%;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-size: cover;
+            background-position: center;
         }
     }
     .description {
         margin: 15px 0 0 0;
         font-size: 19px;
         line-height: 28px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .new {
+        .title {
+            font-size: 22px;
+        }
+        .icons {
+            .icon {
+                width: 40px;
+                height: 40px;
+                i {
+                    font-size: 18px;
+                }
+            }
+        }
+        .img {
+            height: 300px;
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .new {
+        .title {
+            font-size: 26px;
+        }
+        .icons {
+            .icon {
+                width: 45px;
+                height: 45px;
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+        .img {
+            height: 350px;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .new {
+        .title {
+            font-size: 28px;
+        }
+        .icons {
+            .icon {
+                width: 45px;
+                height: 45px;
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+        .img {
+            height: 400px;
+        }
     }
 }

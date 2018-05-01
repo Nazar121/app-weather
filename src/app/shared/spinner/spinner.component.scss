@@ -1,3 +1,6 @@
+@import '../../variables';
+@import '../../mixins';
+
 // spinner
 .lds-spinner {
     color: official;
@@ -21,7 +24,8 @@
     width: 3px;
     height: 14px;
     border-radius: 20%;
-    background: rgb(50, 152, 202);
+    // background: rgb(50, 152, 202);
+    background: $bg-theme;
     }
     .lds-spinner div:nth-child(1) {
     transform: rotate(0deg);

@@ -20,6 +20,8 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+    
     // url Get params
     this.route
     .params

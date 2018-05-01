@@ -3,7 +3,11 @@
 
     <div class="row">
       <div class="col">
-        <div class="block">
+        <div class="card mySearch">
+          <div class="mySearch__title">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              Search:
+          </div>
           <form #myForm="ngForm">
             <div class="container">
               <div class="row">
@@ -37,13 +41,23 @@
     <app-spinner *ngIf="!news"></app-spinner>
 
     <div class="row" *ngIf="news && news.articles">
-      <div class="col-lg-6" *ngFor="let obj of news.articles" (click)="currentNew(obj)">
-        <div class="new block" *ngIf="obj.page == numberPage">
-          <div class="new__img">
-            <img [src]="obj.urlToImage ? obj.urlToImage : '../assets/not_data.png'" alt="">
-          </div>
-          <div class="new__published">{{obj.publishedAt | date:'fullDate'}}</div>
-          <div class="new_title">{{obj.title}}</div>
+     <div class="col-lg-6" *ngFor="let obj of news.articles" (click)="currentNew(obj)">
+        <div class="card myCard" *ngIf="obj.page == numberPage">
+            <div class="myCard__img">
+              <div class="myCard__yesImg" *ngIf="obj.urlToImage" [ngStyle]="{
+                'background-image': 'url(' + obj.urlToImage + ')',
+                'height': '100%',
+                'width': '100%',
+                'background-size': 'cover',
+                'background-position': 'center'}"></div>
+              <img *ngIf="!obj.urlToImage" class="myCard__notImg" src="../assets/not_data.png" alt="">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{obj.title}}</h5>
+              <p class="card-text text-muted">{{obj.publishedAt | date:'fullDate'}}</p>
+              <p class="card-text">{{obj.description}}</p>
+              <button class="btn btn-primary myCard__btn">More</button>
+            </div>
         </div>
       </div>
     </div>

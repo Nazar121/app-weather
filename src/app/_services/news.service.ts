@@ -55,7 +55,7 @@ export class NewsService {
     sessionStorage.setItem('numberPage', JSON.stringify(data));
   }
 
-  // GET FILTER
+  // GET NumberPage
   getNumberPage() {
     return JSON.parse(sessionStorage.getItem('numberPage'));
   }

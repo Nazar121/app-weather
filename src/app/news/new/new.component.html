@@ -1,31 +1,41 @@
-<section class="new">
+<section class="new" id="new">
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="block">
-          <div class="title">{{currentNew.title}}</div>
-          <div class="published">{{currentNew.publishedAt | date:'fullDate'}}</div>
-          <div class="icons">
-            <div>
-              <div class="icon icon--facebook"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-              <div class="icon icon--twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-              <div class="icon icon--email"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
-            </div>
-            <div>
-              <a [href]="currentNew.url" target="_blanck" class="author">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                <div class="author__info">
-                  <div class="ts">{{currentNew.author}}</div>
-                  <div>Original</div>
-                  <div class="info__bg"></div>
-                </div>
-              </a>
+        <div class="card">
+          <div class="card-body">
+            <div class="title">{{currentNew.title}}</div>
+            <div class="published">{{currentNew.publishedAt | date:'fullDate'}}</div>
+            <div class="icons">
+              <div>
+                <div class="icon icon--facebook"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                <div class="icon icon--twitter"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                <div class="icon icon--email"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+              </div>
+              <div>
+                <a [href]="currentNew.url" target="_blanck" class="author">
+                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                  <div class="author__info">
+                    <div class="ts">{{currentNew.author}}</div>
+                    <div>Original</div>
+                    <div class="info__bg"></div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
           <div class="img">
-            <img [src]="currentNew.urlToImage ? currentNew.urlToImage : '../assets/not_data.png'" alt="">
+            <div class="img__yes" *ngIf="currentNew.urlToImage" [ngStyle]="{
+              'background-image': 'url(' + currentNew.urlToImage + ')',
+              'height': '100%',
+              'width': '100%',
+              'background-size': 'cover',
+              'background-position': 'center'}"></div>
+            <img *ngIf="!currentNew.urlToImage" class="img__not" src="../assets/not_data.png" alt="">
           </div>
-          <div class="description">{{currentNew.description}}</div>
+          <div class="card-body">
+            <div class="description">{{currentNew.description}}</div>
+          </div>
         </div>
       </div>
     </div>
