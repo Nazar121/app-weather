@@ -5,24 +5,17 @@ import { HttpModule } from '@angular/http';
 // ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-
 // routing
 import { AppRoutingModule } from './app-routing.module';
 
-// services
-import { WeatherService } from './_services/weather.service';
-
 // components
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     HeaderComponent,
     FooterComponent
   ],
@@ -32,9 +25,7 @@ import { FooterComponent } from './footer/footer.component';
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [
-    WeatherService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

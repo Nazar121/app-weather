@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 // services
-import { NewsService } from '../_services/news.service';
+import { NewsService } from '../services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -63,7 +63,7 @@ export class NewsComponent implements OnInit {
   // GET news
   getNews(data) {
     this.newsService.getNews(data).subscribe(res => {
-      console.log('res ', res);
+      // console.log('res ', res);
       this.news = res;
       this.news.articles.map( (obj, index) => {
         obj['id'] = obj.title.replace(/\s/g, "-");

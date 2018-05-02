@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 // services
-import { NewsService } from '../_services/news.service';
+import { NewsService } from '../services/news.service';
 
 // components
 import { NewsComponent } from './news.component';

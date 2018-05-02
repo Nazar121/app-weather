@@ -10,6 +10,7 @@ export class WeatherService {
     private http: Http
   ) { }
 
+  // GET all month ukr lang
   getMonth() {
     return [
       'Січня',
@@ -27,6 +28,7 @@ export class WeatherService {
     ];
   }
 
+  // GET all days ukr lang
   getDays() {
     return [
       'Неділя',
@@ -39,6 +41,7 @@ export class WeatherService {
     ];
   }
 
+  // GET current day weather
   currentDayWeather(obj: any) {
     const city = obj.searchCity;
     const countryCode = obj.countryCode;
@@ -54,6 +57,7 @@ export class WeatherService {
         .catch(error => Observable.throw(error.json()));
   }
 
+  // GET some days weather
   fiveDaysWeather(obj: any) {
     const city = obj.searchCity;
     const countryCode = obj.countryCode;

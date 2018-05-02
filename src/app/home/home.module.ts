@@ -9,6 +9,9 @@ import { ChartsModule } from 'ng2-charts';
 // modules
 import { SharedModule } from '../shared/shared.module';
 
+// services
+import { WeatherService } from '../services/weather.service';
+
 // components
 import { HomeComponent } from './home.component';
 import { FiveDaysComponent } from './five-days/five-days.component';
@@ -35,6 +38,9 @@ const ROUTES: Routes = [
     FiveDaysComponent,
     CurrentDayComponent,
     SearchComponent
+  ],
+  providers: [
+    WeatherService
   ]
 })
 export class HomeModule { }

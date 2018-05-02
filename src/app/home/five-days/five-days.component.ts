@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
-import { WeatherService } from '../../_services/weather.service';
+
+// charts
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
+
+// services
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-five-days',

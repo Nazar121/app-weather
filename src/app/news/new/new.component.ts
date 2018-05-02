@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { NewsService } from '../../_services/news.service';
+// services
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-new',
