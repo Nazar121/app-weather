@@ -64,7 +64,7 @@ export class CurrentDayComponent implements OnInit {
         this.currentDay_date = d.getDate();
         this.currentDay_month = this.weatherService.getMonth()[d.getMonth()];
         this.currentDay_year = d.getFullYear();
-        this.currentDay_img = `http://openweathermap.org/img/w/${this.currentDay.weather[0].icon}.png`;
+        this.currentDay_img = `https://openweathermap.org/img/w/${this.currentDay.weather[0].icon}.png`;
         // tslint:disable-next-line:max-line-length
         this.currentDay_temp = this.currentDay.main.temp > 0 ? `+${Math.round(this.currentDay.main.temp)}` : `${Math.round(this.currentDay.main.temp)}`;
         // tslint:disable-next-line:max-line-length
