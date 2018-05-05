@@ -1,0 +1,58 @@
+{
+    "header": {
+        "nav": {
+            "item_1": "Home",
+            "item_2": "News"
+        }
+    },
+    "date": {
+        "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    },
+    "pages": {
+        "hone": {
+            "form": {
+                "title": "Search",
+                "Country": "Country",
+                "City": "City",
+                "error": "Please enter characters from \"Latin alphabet\""
+            },
+            "currentDay": {
+                "max": "Max.",
+                "min": "Min.",
+                "pressure": "Pressure",
+                "humidity": "Humidity",
+                "wind": "Wind"
+            },
+            "someDays": {
+                "title": "Weather in the city",
+                "weather_characteristics": "Weather characteristics",
+                "temperature": "Temperature",
+                "pressure": "Pressure, mm",
+                "humidity": "Humidity, %",
+                "wind": "Wind, m/sec"
+            },
+            "chart": {
+                "title": "The average temperature for a day, for some days"
+            }
+        },
+        "news": {
+            "form": {
+                "title": "Search",
+                "country": "Country",
+                "category": "Category"                
+            },
+            "news": "News",
+            "more": "More"
+        }
+    },
+    "footer": {
+        "contacts": {
+            "title": "Contact us"
+        },
+        "links": {
+            "link_1": "Meteorological interface API",
+            "link_2": "News API"
+        }
+    }
+}
