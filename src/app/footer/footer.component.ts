@@ -15,7 +15,7 @@ import { LangService } from '../services/lang.service';
 })
 export class FooterComponent implements OnInit {
 
-  footer: object;
+  footer: any;
 
   constructor(
     private langService: LangService,

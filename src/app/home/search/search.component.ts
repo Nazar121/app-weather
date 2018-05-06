@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
   lang: string;
 
   // dictionary form
-  form: object;
+  form: any;
 
   constructor(
     private store: Store<AppState>,

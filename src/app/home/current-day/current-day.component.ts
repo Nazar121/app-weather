@@ -20,7 +20,7 @@ export class CurrentDayComponent implements OnInit {
   @Input() search: any;
 
   // dictionary day
-  dictionaryDay: object;
+  dictionaryDay: any;
   days: any;
   months: any;
 

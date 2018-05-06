@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   // date
   lang: string;
-  header: object;
+  header: any;
 
   constructor(
     private langService: LangService,
