@@ -6,16 +6,18 @@
         }
     },
     "date": {
-        "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     },
     "pages": {
-        "hone": {
+        "home": {
             "form": {
                 "title": "Search",
-                "Country": "Country",
-                "City": "City",
-                "error": "Please enter characters from \"Latin alphabet\""
+                "country": "Country",
+                "city": "City",
+                "search": "Search",
+                "error_required": "The field is required",
+                "error_wrong": "Please enter characters from \"Latin alphabet\""
             },
             "currentDay": {
                 "max": "Max.",

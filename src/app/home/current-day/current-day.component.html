@@ -28,19 +28,19 @@
     </div>
     <div class="row">
       <div class="col-6 col-lg-3">
-        <div>Макс. {{currentDay_max_temp}}&deg;</div>
-        <div>Мін. {{currentDay_min_temp}}&deg;</div>
+        <div>{{dictionaryDay.max}} {{currentDay_max_temp}}&deg;</div>
+        <div>{{dictionaryDay.min}} {{currentDay_min_temp}}&deg;</div>
       </div>
       <div class="col-6 col-lg-3">
-        <div>Тиск</div>
+        <div>{{dictionaryDay.pressure}}</div>
         <div>{{currentDay_pressure}} мм</div>
       </div>
       <div class="col-6 col-lg-3">
-        <div>Вологісь</div>
+        <div>{{dictionaryDay.humidity}}</div>
         <div>{{currentDay_humidity}} %</div>
       </div>
       <div class="col-6 col-lg-3">
-        <div>Вітер</div>
+        <div>{{dictionaryDay.wind}}</div>
         <div>{{currentDay_wind}} м/сек</div>
       </div>
     </div>

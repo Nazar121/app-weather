@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
 
+// store
+import { Store } from '@ngrx/store';
+import { AppState } from '../../redux/app.state';
+import { ChangeLan } from '../../redux/lang.action';
+
 // services
 import { WeatherService } from '../../services/weather.service';
+import { LangService } from '../../services/lang.service';
 
 @Component({
   selector: 'app-current-day',
@@ -13,8 +19,15 @@ export class CurrentDayComponent implements OnInit {
 
   @Input() search: any;
 
+  // dictionary day
+  dictionaryDay: object;
+  days: any;
+  months: any;
+
+  // search
   searchCity: string;
   countryCode: string;
+  lang: string;
 
   // current day
   currentDay: any = {};
@@ -32,24 +45,34 @@ export class CurrentDayComponent implements OnInit {
   currentDay_humidity: number;
   currentDay_wind: number;
 
-  // select
-  select: string = 'info1';
-
   // Not res
   errorRes: boolean = false;
 
   constructor(
+    private store: Store<AppState>,
+    private langService: LangService,
     private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
     this.searchCity = this.search.searchCity;
     this.countryCode = this.search.countryCode;
-    this.onCurrentDayWeather(this.search);
-  }
 
-  onSelect(value) {
-    this.select = value;
+    // listening language
+    this.store.select('language').subscribe(res => {
+      this.lang = res.lang;
+      this.langService.getDictionary(this.lang.toLocaleLowerCase()).subscribe(res => {
+        this.dictionaryDay = res.pages.home.currentDay;
+        this.days = res.date.days;
+        this.months = res.date.months;
+        console.log(this.days);
+
+        // GET weather on day
+        this.search['lang'] = this.lang;
+        this.onCurrentDayWeather(this.search);
+      });
+    });
+
   }
 
   onCurrentDayWeather(search) {
@@ -60,9 +83,9 @@ export class CurrentDayComponent implements OnInit {
 
         const d = new Date();
         this.currentDay = data;
-        this.currentDay_day = this.weatherService.getDays()[d.getDay()];
+        this.currentDay_day = this.days[d.getDay()];
         this.currentDay_date = d.getDate();
-        this.currentDay_month = this.weatherService.getMonth()[d.getMonth()];
+        this.currentDay_month = this.months[d.getMonth()];
         this.currentDay_year = d.getFullYear();
         this.currentDay_img = `https://openweathermap.org/img/w/${this.currentDay.weather[0].icon}.png`;
         // tslint:disable-next-line:max-line-length

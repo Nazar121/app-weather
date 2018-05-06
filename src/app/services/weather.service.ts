@@ -43,10 +43,19 @@ export class WeatherService {
 
   // GET current day weather
   currentDayWeather(obj: any) {
+    console.log('service ', obj);
+    switch(obj.lang.toUpperCase()) {
+      case 'UKR':
+        obj.lang = 'UA';
+        break;
+      default:
+        obj.lang;
+        break;
+    }
     const city = obj.searchCity;
     const countryCode = obj.countryCode;
     const units = 'units=metric';
-    const lang = 'lang=ua';
+    const lang = `lang=${obj.lang}`;
     const appid = 'APPID=6b16f4a9bc410f8962909f0dbd2b6649';
     return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&${units}&${lang}&${appid}`)
         .map(res => {

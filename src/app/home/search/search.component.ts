@@ -1,8 +1,14 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { retry } from 'rxjs/operator/retry';
 
+// store
+import { Store } from '@ngrx/store';
+import { AppState } from '../../redux/app.state';
+import { ChangeLan } from '../../redux/lang.action';
+
 // services
 import { WeatherService } from '../../services/weather.service';
+import { LangService } from '../../services/lang.service';
 
 // components
 import { FiveDaysComponent } from '../five-days/five-days.component';
@@ -27,12 +33,26 @@ export class SearchComponent implements OnInit {
   // data
   countries: any = [];
   cities: any = [];
+  lang: string;
+
+  // dictionary form
+  form: object;
 
   constructor(
+    private store: Store<AppState>,
+    private langService: LangService,
     private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
+     // listening language
+     this.store.select('language').subscribe(res => {
+      this.lang = res.lang;
+      this.langService.getDictionary(this.lang.toLocaleLowerCase()).subscribe(res => {
+        this.form = res.pages.home.form;
+      });
+    });
+
     this.getCountryList();
   }
 
@@ -45,9 +65,9 @@ export class SearchComponent implements OnInit {
         this.countryCode = obj.country;
       }
     });
-    this.FiveDaysComponent.fiveDaysWeather({searchCity: this.searchCity, countryCode: this.countryCode});
+    this.FiveDaysComponent.fiveDaysWeather({searchCity: this.searchCity, countryCode: this.countryCode, lang: this.lang});
     this.FiveDaysComponent.changeCityCharts();
-    this.CurrentDayComponent.onCurrentDayWeather({searchCity: this.searchCity, countryCode: this.countryCode});
+    this.CurrentDayComponent.onCurrentDayWeather({searchCity: this.searchCity, countryCode: this.countryCode, lang: this.lang});
   }
 
   getCountryList() {
@@ -74,7 +94,7 @@ export class SearchComponent implements OnInit {
         this.countryCode = country.code;
         return;
       } else {
-        this.countryCode = '';
+        // this.countryCode = '';
       }
     });
     this.weatherService.getCityList(country)
