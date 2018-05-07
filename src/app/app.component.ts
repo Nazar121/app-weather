@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    setInterval(() => {console.clear()}, 0);
   }
 
 }

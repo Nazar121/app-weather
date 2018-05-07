@@ -7,13 +7,13 @@
           <!-- Not data -->
           <div class="notData" *ngIf="errorRes">
             <img src="./../../assets/not_data.png" class="notData__img" alt="">
-            <div class="notData__text">Результатів не знайдено</div>
+            <div class="notData__text">{{noResponse.message}}</div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <div class="title" *ngIf="!errorRes">Погода у місті {{city}}</div>
+          <div class="title" *ngIf="!errorRes">{{someDays.title}} {{city}}</div>
         </div>
       </div>
       <div class="row justify-content-center" *ngIf="!errorRes">
@@ -31,24 +31,24 @@
               <td class="table__time" *ngFor="let obj of arrDays[indexDay].list">{{obj.time}}</td>
             </tr>
             <tr>
-              <td>Характеристики погоди</td>
+              <td>{{someDays.weather_characteristics}}</td>
               <td *ngFor="let obj of arrDays[indexDay].list"><img src="https://openweathermap.org/img/w/{{obj.weather[0].icon}}.png" alt="">
               <div>{{obj.weather[0].description}}</div></td>
             </tr>
             <tr>
-              <td>Температура, &deg;С</td>
+              <td>{{someDays.temperature}}, &deg;С</td>
               <td class="table__temp" *ngFor="let obj of arrDays[indexDay].list">{{obj.main.temp}}&deg;</td>
             </tr>
             <tr>
-              <td>Тиск, мм</td>
+              <td>{{someDays.pressure}}</td>
               <td *ngFor="let obj of arrDays[indexDay].list">{{obj.main.pressure}}</td>
             </tr>
             <tr>
-              <td>Вологість, %</td>
+              <td>{{someDays.humidity}}</td>
               <td *ngFor="let obj of arrDays[indexDay].list">{{obj.main.humidity}}</td>
             </tr>
             <tr>
-              <td>Вітер м/сек</td>
+              <td>{{someDays.wind}}</td>
               <td *ngFor="let obj of arrDays[indexDay].list">{{obj.wind.speed}}</td>
             </tr>
           </table>
@@ -67,13 +67,13 @@
           <!-- Not data -->
           <div class="notData" *ngIf="errorRes">
             <img src="./../../assets/not_data.png" class="notData__img" alt="">
-            <div class="notData__text">Результатів не знайдено</div>
+            <div class="notData__text">{{noResponse.message}}</div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <div class="title" *ngIf="!errorRes">Середнє значення температури за день, протягом п'яти - шести днів</div>
+          <div class="title" *ngIf="!errorRes">{{chartWords.title}}</div>
         </div>
       </div>
       <div class="row" *ngIf="!errorRes">

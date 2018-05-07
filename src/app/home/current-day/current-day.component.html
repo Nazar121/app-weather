@@ -3,7 +3,7 @@
   <div class="card-body" *ngIf="errorRes">
     <div class="notData">
       <img src="./../../assets/not_data.png" class="notData__img" alt="">
-      <div class="notData__text">Результатів не знайдено</div>
+      <div class="notData__text">{{noResponse.message}}</div>
     </div>
   </div>
   <div class="card-body" *ngIf="!errorRes">

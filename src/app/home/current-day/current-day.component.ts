@@ -19,10 +19,11 @@ export class CurrentDayComponent implements OnInit {
 
   @Input() search: any;
 
-  // dictionary day
+  // dictionary data
   dictionaryDay: any;
   days: any;
   months: any;
+  noResponse: any;
 
   // search
   searchCity: string;
@@ -65,7 +66,8 @@ export class CurrentDayComponent implements OnInit {
         this.dictionaryDay = res.pages.home.currentDay;
         this.days = res.date.days;
         this.months = res.date.months;
-        console.log(this.days);
+        this.noResponse = res.noResponse;
+        // console.log(this.days);
 
         // GET weather on day
         this.search['lang'] = this.lang;

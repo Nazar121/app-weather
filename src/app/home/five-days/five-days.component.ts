@@ -3,8 +3,14 @@ import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular
 // charts
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
+// store
+import { Store } from '@ngrx/store';
+import { AppState } from '../../redux/app.state';
+import { ChangeLan } from '../../redux/lang.action';
+
 // services
 import { WeatherService } from '../../services/weather.service';
+import { LangService } from '../../services/lang.service';
 
 @Component({
   selector: 'app-five-days',
@@ -28,7 +34,7 @@ export class FiveDaysComponent implements OnInit {
   public lineChartLabels: Array<any> = [];
   public lineChartType: string = 'line';
 
-  // data weathe
+  // data weather
   data: any = [];
 
   // days
@@ -43,15 +49,39 @@ export class FiveDaysComponent implements OnInit {
   // Not res
   errorRes: boolean = false;
 
+  // data dictionary
+  lang: string;
+  days: any;
+  months: any;
+  someDays: any;
+  chartWords: any;
+  noResponse: any;
+  
   constructor(
+    private langService: LangService,
+    private store: Store<AppState>,
     private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
     this.searchCity = this.search.searchCity;
     this.countryCode = this.search.countryCode;
-    setInterval(() => {console.clear()}, 0);
-    this.fiveDaysWeather(this.search);
+
+     // listening language
+     this.store.select('language').subscribe(res => {
+      this.lang = res.lang;
+      this.langService.getDictionary(this.lang.toLocaleLowerCase()).subscribe(res => {
+        // this.header = res.header;
+        this.days = res.date.days;
+        this.months = res.date.months;
+        this.someDays = res.pages.home.someDays;
+        this.chartWords = res.pages.home.chart;
+        this.noResponse = res.noResponse;
+        console.log(res);
+        this.fiveDaysWeather(this.search);
+      });
+    });
+
   }
 
   test() {
@@ -69,6 +99,8 @@ export class FiveDaysComponent implements OnInit {
   // weather on 5 days
   fiveDaysWeather(search) {
     this.arrDays = [];
+    search['lang'] = this.lang;
+    console.log(search);
     this.weatherService.fiveDaysWeather(search).
       subscribe(
         data => {
@@ -90,9 +122,9 @@ export class FiveDaysComponent implements OnInit {
             // set properties of the day
             this.arrDays[i].date = {
               id: i,
-              day: this.weatherService.getDays()[date.getDay()],
+              day: this.days[date.getDay()],
               number: date.getDate(),
-              month: this.weatherService.getMonth()[date.getMonth()]
+              month: this.months[date.getMonth()]
             };
             // default active day
             // console.log('i ', i);
