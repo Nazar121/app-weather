@@ -15,12 +15,12 @@
           </li>
         </ul>
         <div class="dropdown">
-          <div>{{lang}}</div>
+          <div>{{lang | uppercase}}</div>
           <div id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" (click)="changeLang('EN')" [ngClass]="{'lang-active': lang === 'EN'}">EN</a>
-            <a class="dropdown-item" (click)="changeLang('UKR')" [ngClass]="{'lang-active': lang === 'UKR'}">UKR</a>
-            <a class="dropdown-item" (click)="changeLang('RU')" [ngClass]="{'lang-active': lang === 'RU'}">RU</a>
+            <a class="dropdown-item" (click)="changeLang('en')" [ngClass]="{'lang-active': lang === 'en'}">EN</a>
+            <a class="dropdown-item" (click)="changeLang('uk')" [ngClass]="{'lang-active': lang === 'uk'}">UK</a>
+            <a class="dropdown-item" (click)="changeLang('ru')" [ngClass]="{'lang-active': lang === 'ru'}">RU</a>
           </div>
         </div>
       </div>

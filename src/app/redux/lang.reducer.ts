@@ -1,7 +1,7 @@
 import { LANG_ACTION, ChangeLan } from "./lang.action";
 
 const initialState = {
-    lang: 'UKR'
+    lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en'
 };
 
 export function langReducer(state = initialState, action: ChangeLan) {

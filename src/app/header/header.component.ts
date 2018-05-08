@@ -38,22 +38,24 @@ export class HeaderComponent implements OnInit {
 
   // Change lang
   changeLang(lang) {
-    lang = lang.toUpperCase();
+    lang = lang.toLowerCase();
     switch(lang) {
-      case 'EN':
+      case 'en':
         this.lang = lang;
         break;
-      case 'UKR':
+      case 'uk':
         this.lang = lang;
         break;
-      case 'RU':
+      case 'ru':
         this.lang = lang;
         break;
       default:
-        this.lang = 'EN';
+        this.lang = 'en';
         break;
     }
-    this.store.dispatch(new ChangeLan(lang.toUpperCase()));
+    this.lang = this.lang.toLowerCase();
+    this.langService.setLang(this.lang);
+    this.store.dispatch(new ChangeLan(lang.toLowerCase()));
   }
 
 }

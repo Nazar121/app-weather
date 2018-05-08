@@ -17,4 +17,14 @@ export class LangService {
         .catch(error => Observable.throw(error.json()));
     }
 
+    // SET lang to LocalStorage
+    setLang(lang) {
+        localStorage.setItem('lang', lang.toLowerCase());
+    }
+
+    // GET lang to LocalStorage
+    getLang() {
+        return localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en';
+    }
+
 }

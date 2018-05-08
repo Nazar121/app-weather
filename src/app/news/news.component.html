@@ -6,29 +6,29 @@
         <div class="card mySearch">
           <div class="mySearch__title">
               <i class="fa fa-search" aria-hidden="true"></i>
-              Search:
+              {{form.title}}:
           </div>
           <form #myForm="ngForm">
             <div class="container">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Країна</label>
+                    <label>{{form.country}}</label>
                     <select name="searchCountry" class="custom-select" [(ngModel)]="searchCountry" (ngModelChange)="changeSearch()">
-                        <option *ngFor="let obj of countries" [value]="obj.en">{{obj.ua}}</option>
+                        <option *ngFor="let obj of countries" [value]="obj.en">{{obj[lang]}}</option>
                       </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Категорія</label>
+                    <label>{{form.category}}</label>
                     <select name="searchCategory" class="custom-select" [(ngModel)]="searchCategory" (ngModelChange)="changeSearch()">
-                        <option *ngFor="let obj of categories" [value]="obj.en">{{obj.ua}}</option>
+                        <option *ngFor="let obj of categories" [value]="obj.en">{{obj[lang]}}</option>
                       </select>
                   </div>
                 </div>
                 <div class="col">
-                  <div class="title">Новини</div>
+                  <div class="title">{{newsWords.news}}</div>
                 </div>
               </div>
             </div>
@@ -38,7 +38,19 @@
     </div>
 
     <!-- Spinner -->
-    <app-spinner *ngIf="!news"></app-spinner>
+    <app-spinner *ngIf="!news && !errorRes"></app-spinner>
+
+    <!-- Not data -->
+    <div class="row" *ngIf="errorRes">
+      <div class="col">
+        <div class="card">
+          <div class="notData">
+            <img src="./../../assets/not_data.png" class="notData__img" alt="">
+            <div class="notData__text">{{noResponse.message}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="row" *ngIf="news && news.articles">
      <div class="col-lg-6" *ngFor="let obj of news.articles" (click)="currentNew(obj)">
@@ -56,7 +68,7 @@
               <h5 class="card-title">{{obj.title}}</h5>
               <p class="card-text text-muted">{{obj.publishedAt | date:'fullDate'}}</p>
               <p class="card-text">{{obj.description}}</p>
-              <button class="btn btn-primary myCard__btn">More</button>
+              <button class="btn btn-primary myCard__btn">{{newsWords.more}}</button>
             </div>
         </div>
       </div>

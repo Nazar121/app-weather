@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// store
+import { Store } from '@ngrx/store';
+import { AppState } from '../redux/app.state';
+import { ChangeLan } from '../redux/lang.action';
+
 // services
 import { NewsService } from '../services/news.service';
+import { LangService } from '../services/lang.service';
 
 @Component({
   selector: 'app-news',
@@ -11,6 +17,15 @@ import { NewsService } from '../services/news.service';
 })
 export class NewsComponent implements OnInit {
 
+  // dictionary data
+  lang: string;
+  form: any;
+  newsWords: any;
+  noResponse: any;
+
+  // Not res
+  errorRes: boolean = false;
+
   // news and pagination
   news: any;
   countPages: any = [];
@@ -18,29 +33,41 @@ export class NewsComponent implements OnInit {
 
   // filter news
   countries: any = [
-    { code: 'us', en: 'United States', ua: 'Сполучені Штати' },
-    { code: 'gb', en: 'United Kingdom', ua: 'Об"єднане Королівство' },
-    { code: 'de', en: 'Germany', ua: 'Німеччина' },
-    { code: 'ua', en: 'Ukraine', ua: 'Україна' },
-    { code: 'ru', en: 'Russia', ua: 'Росія' }
+    { code: 'us', en: 'United States', uk: 'Сполучені Штати', ru: 'Соединенные Штаты' },
+    { code: 'gb', en: 'United Kingdom', uk: 'Об"єднане Королівство', ru: 'Объединенное Королевство' },
+    { code: 'de', en: 'Germany', uk: 'Німеччина', ru: 'Германия' },
+    { code: 'ua', en: 'Ukraine', uk: 'Україна', ru: 'Украина' },
+    { code: 'ru', en: 'Russia', uk: 'Росія', ru: 'Россия' }
   ];
   categories: any = [
-    { en: 'Business', ua: 'Бізнес' },
-    { en: 'Technology', ua: 'Технології' },
-    { en: 'Science', ua: 'Наука' },
-    { en: 'Health', ua: 'Здоров"я' },
-    { en: 'Sports', ua: 'Спорт' },
-    { en: 'Entertainment', ua: 'Розваги' }
+    { en: 'Business', uk: 'Бізнес', ru: 'Бизнес' },
+    { en: 'Technology', uk: 'Технології', ru: 'Технологии' },
+    { en: 'Science', uk: 'Наука', ru: 'Наука' },
+    { en: 'Health', uk: 'Здоров"я', ru: 'Здоровье' },
+    { en: 'Sports', uk: 'Спорт', ru: 'Спорт' },
+    { en: 'Entertainment', uk: 'Розваги', ru: 'Развлечения' }
   ];
   searchCountry: string = 'Ukraine';
   searchCategory: string = 'Business';
 
   constructor(
+    private langService: LangService,
+    private store: Store<AppState>,
     private newsService: NewsService,
     private router: Router
   ) {}
 
   ngOnInit() {
+    // listening language
+    this.store.select('language').subscribe(res => {
+      this.lang = res.lang;
+      this.langService.getDictionary(this.lang.toLocaleLowerCase()).subscribe(res => {
+        this.form = res.pages.news.form;
+        this.newsWords = res.pages.news;
+        this.noResponse = res.noResponse;
+      });
+    });
+
     // SET number page
     if ( this.newsService.getNumberPage() ) {
       this.numberPage = this.newsService.getNumberPage();
@@ -63,6 +90,7 @@ export class NewsComponent implements OnInit {
   // GET news
   getNews(data) {
     this.newsService.getNews(data).subscribe(res => {
+      this.errorRes = false;
       // console.log('res ', res);
       this.news = res;
       this.news.articles.map( (obj, index) => {
@@ -72,7 +100,10 @@ export class NewsComponent implements OnInit {
 
       // pagination
       this.pagination();
-    }, error => { console.log(error); });
+    }, error => {
+      this.errorRes = true;
+      console.log(error); 
+    });
   }
 
   // SEARCH
