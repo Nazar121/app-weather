@@ -77,7 +77,6 @@ export class FiveDaysComponent implements OnInit {
         this.someDays = res.pages.home.someDays;
         this.chartWords = res.pages.home.chart;
         this.noResponse = res.noResponse;
-        console.log(res);
         this.fiveDaysWeather(this.search);
       });
     });
@@ -85,7 +84,7 @@ export class FiveDaysComponent implements OnInit {
   }
 
   test() {
-    console.log('test child');
+    // console.log('?test child');
   }
 
   // line charts
@@ -100,7 +99,7 @@ export class FiveDaysComponent implements OnInit {
   fiveDaysWeather(search) {
     this.arrDays = [];
     search['lang'] = this.lang;
-    console.log(search);
+    // console.log(search);
     this.weatherService.fiveDaysWeather(search).
       subscribe(
         data => {

@@ -45,6 +45,9 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // initialization
+    this.initializationWeather();
+
      // listening language
      this.store.select('language').subscribe(res => {
       this.lang = res.lang;
@@ -56,6 +59,16 @@ export class SearchComponent implements OnInit {
     this.getCountryList();
   }
 
+  // initialization weather
+  initializationWeather() {
+    const weather = this.weatherService.getWeather();
+    this.searchCountry = weather.country ? weather.country : 'Ukraine';
+    this.searchCity = weather.city ? weather.city : 'Lviv';
+    this.countryCode = weather.countryCode ? weather.countryCode : 'UA';
+    debugger
+  }
+
+  // Search weather
   onSearch(event) {
     event.stopPropagation();
     event.preventDefault();
@@ -65,6 +78,7 @@ export class SearchComponent implements OnInit {
         this.countryCode = obj.country;
       }
     });
+    this.weatherService.setWeather({country: this.searchCountry, city: this.searchCity, countryCode: this.countryCode});
     this.FiveDaysComponent.fiveDaysWeather({searchCity: this.searchCity, countryCode: this.countryCode, lang: this.lang});
     this.FiveDaysComponent.changeCityCharts();
     this.CurrentDayComponent.onCurrentDayWeather({searchCity: this.searchCity, countryCode: this.countryCode, lang: this.lang});

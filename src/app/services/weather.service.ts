@@ -10,40 +10,8 @@ export class WeatherService {
     private http: Http
   ) { }
 
-  // GET all month ukr lang
-  getMonth() {
-    return [
-      'Січня',
-      'Лютого',
-      'Березня',
-      'Квітня',
-      'Травня',
-      'Червня',
-      'Липня',
-      'Серпня',
-      'Вересня',
-      'Жовтня',
-      'Листопада',
-      'Грудня'
-    ];
-  }
-
-  // GET all days ukr lang
-  getDays() {
-    return [
-      'Неділя',
-      'Понеділок',
-      'Вівторок',
-      'Середа',
-      'Четвер',
-      'Пятниця',
-      'Субота',
-    ];
-  }
-
   // GET current day weather
   currentDayWeather(obj: any) {
-    console.log('service ', obj);
     switch(obj.lang.toLowerCase()) {
       case 'uk':
         obj.lang = 'ua';
@@ -119,6 +87,16 @@ export class WeatherService {
         }
       })
       .catch(error => Observable.throw(error.json()));
+  }
+
+  // SET weather to SessionStorage 
+  setWeather(data) {
+    sessionStorage.setItem('weather', JSON.stringify(data));
+  }
+
+  // GET weather with SessionStorage 
+  getWeather() {
+    return JSON.parse(sessionStorage.getItem('weather'));
   }
 
 }
