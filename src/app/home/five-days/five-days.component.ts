@@ -163,7 +163,7 @@ export class FiveDaysComponent implements OnInit {
             // push object with the weather this day
             this.arrDays[i].list.push(obj);
           });
-          console.log('arrDays ', this.arrDays);
+          // console.log('arrDays ', this.arrDays);
           // functions
           this.chartOnFiveDays();
         },

@@ -12,6 +12,7 @@ import { NewsService } from '../services/news.service';
 // components
 import { NewsComponent } from './news.component';
 import { NewComponent } from './new/new.component';
+import { ModalMessageComponent } from './modal-message/modal-message.component';
 
 const ROUTES: Routes = [
   { path: '', component: NewsComponent },
@@ -29,7 +30,8 @@ const ROUTES: Routes = [
   exports: [RouterModule],
   declarations: [
     NewsComponent,
-    NewComponent
+    NewComponent,
+    ModalMessageComponent
   ],
   providers: [
     NewsService

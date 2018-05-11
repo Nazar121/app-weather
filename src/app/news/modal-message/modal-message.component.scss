@@ -1,0 +1,67 @@
+@import '../../variables';
+@import '../../mixins';
+
+.modal-message {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.modal-img {
+    display: block;
+    margin: 0 auto;
+}
+
+.myBtn {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    cursor: pointer;
+    -webkit-animation: mymove linear 1s infinite alternate;
+    -moz-animation: mymove linear 1s infinite alternate;
+    -o-animation: mymove linear 1s infinite alternate;
+    animation: mymove linear 1s infinite alternate;
+    &:hover {
+        -webkit-animation-play-state: paused;
+        -moz-animation-play-state: paused;
+        -o-animation-play-state: paused;
+        animation-play-state: paused;
+    }
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    from {
+        transform: rotate(20deg);
+    }
+    to {
+        transform: rotate(-20deg);
+    }
+}
+
+@-webkit-keyframes mymove {
+    from {
+        transform: rotate(20deg);
+    }
+    to {
+        transform: rotate(-20deg);
+    }
+}
+
+@-moz-keyframes mymove {
+    from {
+        transform: rotate(20deg);
+    }
+    to {
+        transform: rotate(-20deg);
+    }
+}
+
+@-o-keyframes mymove {
+    from {
+        transform: rotate(20deg);
+    }
+    to {
+        transform: rotate(-20deg);
+    }
+}

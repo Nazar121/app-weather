@@ -1,0 +1,24 @@
+<div class="myBtn" data-toggle="modal" data-target="#exampleModalCenter">
+  <img src="../assets/images/modal_message.png" height="80" alt="">
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <img src="../assets/images/modal_message.png" height="100" alt="" class="modal-img">
+          <div class="modal-message">
+            {{modal.message}}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -62,10 +62,15 @@ export class SearchComponent implements OnInit {
   // initialization weather
   initializationWeather() {
     const weather = this.weatherService.getWeather();
-    this.searchCountry = weather.country ? weather.country : 'Ukraine';
-    this.searchCity = weather.city ? weather.city : 'Lviv';
-    this.countryCode = weather.countryCode ? weather.countryCode : 'UA';
-    debugger
+    if (weather) {
+      this.searchCountry = weather.country ? weather.country : 'Ukraine';
+      this.searchCity = weather.city ? weather.city : 'Lviv';
+      this.countryCode = weather.countryCode ? weather.countryCode : 'UA';
+    } else {
+      this.searchCountry = 'Ukraine';
+      this.searchCity = 'Lviv';
+      this.countryCode = 'UA';
+    }
   }
 
   // Search weather

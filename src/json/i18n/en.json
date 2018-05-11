@@ -47,6 +47,9 @@
                 "country": "Country",
                 "category": "Category"                
             },
+            "modal": {
+                "message": "This service does not allow you to translate these news into other languages !!!"
+            },
             "news": "News",
             "more": "More"
         }
