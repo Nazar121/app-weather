@@ -1,4 +1,5 @@
 <div class="card">
+
   <!-- Not data -->
   <div class="card-body" *ngIf="errorRes">
     <div class="notData">
@@ -6,7 +7,11 @@
       <div class="notData__text">{{noResponse.message}}</div>
     </div>
   </div>
-  <div class="card-body" *ngIf="!errorRes">
+
+  <!-- Spinner -->
+  <app-spinner *ngIf="!errorRes && !currentDay" class="spinnerCenter"></app-spinner>
+
+  <div class="card-body" *ngIf="!errorRes && currentDay">
     <div class="date">
       <div class="title" style="text-align: left;">
         {{currentDay_city}}
@@ -45,4 +50,5 @@
       </div>
     </div>
   </div>
+
 </div>

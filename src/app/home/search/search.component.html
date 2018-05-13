@@ -9,7 +9,7 @@
             {{form.title}}:
           </div>
           <div class="card-body">
-            <form #search="ngForm" class="was-validated justify-content-center" enctype="multipart/form-data">
+            <form #search="ngForm" class="was-validated justify-content-center" enctype="multipart/form-data" (ngSubmit)="onSearch($event)">
               <div class="form-group">
                 <label for="country">{{form.country}}</label>
                 <div class="required">
@@ -72,7 +72,7 @@
                     <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
                 </datalist>
               </div>
-              <button type="button" (click)="onSearch($event)" [disabled]="!search.form.valid" class="btn">{{form.search}}</button>
+              <button type="submit" [disabled]="!search.form.valid" class="btn">{{form.search}}</button>
             </form>
           </div>
         </div>

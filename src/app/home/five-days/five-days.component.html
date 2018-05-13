@@ -9,6 +9,8 @@
             <img src="./../../assets/not_data.png" class="notData__img" alt="">
             <div class="notData__text">{{noResponse.message}}</div>
           </div>
+          <!-- Spinner -->
+          <app-spinner *ngIf="!errorRes && !someDays" class="spinnerCenter"></app-spinner>
         </div>
       </div>
       <div class="row">
@@ -69,6 +71,8 @@
             <img src="./../../assets/not_data.png" class="notData__img" alt="">
             <div class="notData__text">{{noResponse.message}}</div>
           </div>
+          <!-- Spinner -->
+          <app-spinner *ngIf="!errorRes && !lineChartData" class="spinnerCenter"></app-spinner>
         </div>
       </div>
       <div class="row">

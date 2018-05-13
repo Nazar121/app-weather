@@ -6,6 +6,11 @@
   @extend .title;
 }
 
+.spinnerCenter {
+  display: inline-block;
+  margin: 0 auto;
+}
+
 // NOT data
 .notData {
   .notData__img {

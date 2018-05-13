@@ -75,8 +75,6 @@ export class SearchComponent implements OnInit {
 
   // Search weather
   onSearch(event) {
-    event.stopPropagation();
-    event.preventDefault();
     this.cities.map(obj => {
       if ( obj.name.toLowerCase() === this.searchCity.toLowerCase() ) {
         this.searchCity = this.searchCity;

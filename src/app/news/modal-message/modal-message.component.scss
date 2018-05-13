@@ -15,7 +15,7 @@
 .myBtn {
     position: fixed;
     top: 15%;
-    right: 0;
+    right: 2%;
     cursor: pointer;
     -webkit-animation: mymove linear 1s infinite alternate;
     -moz-animation: mymove linear 1s infinite alternate;
@@ -26,6 +26,11 @@
         -moz-animation-play-state: paused;
         -o-animation-play-state: paused;
         animation-play-state: paused;
+    }
+    img {
+        height: 70px;
+        width: auto;
+        max-width: 100%;
     }
 }
 
@@ -63,5 +68,43 @@
     }
     to {
         transform: rotate(-20deg);
+    }
+}
+
+// --- media --- //
+@media (max-width: 575.98px) {
+    .myBtn {
+        top: 8%;
+        img {
+            height: 50px;
+            width: auto;
+            max-width: 100%;
+        }
+    }
+}
+
+// --- media --- //
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .myBtn {
+        top: 8%;
+        right: 3%;
+        img {
+            height: 55px;
+            width: auto;
+            max-width: 100%;
+        }
+    }
+}
+
+// --- media --- //
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .myBtn {
+        top: 10%;
+        right: 2%;
+        img {
+            height: 60px;
+            width: auto;
+            max-width: 100%;
+        }
     }
 }
