@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpRequest } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class WeatherService {
 
   constructor(
-    private http: Http
+    private http: HttpClient
   ) { }
 
   // GET current day weather
@@ -26,11 +26,7 @@ export class WeatherService {
     const lang = `lang=${obj.lang.toLowerCase()}`;
     const appid = 'APPID=6b16f4a9bc410f8962909f0dbd2b6649';
     return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&${units}&${lang}&${appid}`)
-        .map(res => {
-            {
-              return res.json();
-            }
-        })
+        .map(res => res)
         .catch(error => Observable.throw(error.json()));
   }
 
@@ -51,22 +47,14 @@ export class WeatherService {
     const lang = `lang=${obj.lang.toLowerCase()}`;
     const appid = 'APPID=6b16f4a9bc410f8962909f0dbd2b6649';
     return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&${units}&${lang}&${appid}`)
-        .map(res => {
-            {
-              return res.json();
-            }
-        })
+        .map(res => res)
         .catch(error => Observable.throw(error.json()));
   }
 
   // GET all list countries
   getCountryList() {
-    return this.http.get('../../json/country.list.json')
-      .map(res => {
-        {
-          return res.json();
-        }
-      })
+    return this.http.get('../../assets/json/country.list.json')
+      .map(res => res)
       .catch(error => Observable.throw(error.json()));
   }
 
@@ -74,10 +62,10 @@ export class WeatherService {
   getCityList(searchCountry) {
     let allCities: any;
     let cityList: any = [];
-    return this.http.get('../../json/city.list.json')
+    return this.http.get('../../assets/json/city.list.json')
       .map(res => {
         {
-          allCities = res.json();
+          allCities = res;
           allCities.map(obj => {
             if ( obj.country === searchCountry.code ) {
               cityList.push(obj);

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // redux
 import { StoreModule } from '@ngrx/store';
@@ -28,7 +28,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     AppRoutingModule,
     StoreModule.forRoot({language: langReducer})

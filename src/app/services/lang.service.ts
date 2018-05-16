@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpRequest } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 
@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 export class LangService {
 
     constructor(
-    private http: Http
+    private http: HttpClient
     ) {}
 
     // GET dictionary for language
     getDictionary(lang) {
-        return this.http.get(`../../json/i18n/${lang}.json`)
-        .map( res => {return res.json();} )
+        return this.http.get(`../../assets/json/lang/${lang}.json`)
+        .map( res => res )
         .catch(error => Observable.throw(error.json()));
     }
 
