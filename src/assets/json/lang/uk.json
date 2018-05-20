@@ -30,7 +30,7 @@
                 "wind": "Вітер"
             },
             "someDays": {
-                "title": "Погода у місті",
+                "title": "Погода у",
                 "weather_characteristics": "Характеристики погоди",
                 "temperature": "Температура",
                 "pressure": "Тиск, mm",

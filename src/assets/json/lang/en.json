@@ -30,7 +30,7 @@
                 "wind": "Wind"
             },
             "someDays": {
-                "title": "Weather in the city",
+                "title": "Weather in",
                 "weather_characteristics": "Weather characteristics",
                 "temperature": "Temperature",
                 "pressure": "Pressure, mm",
