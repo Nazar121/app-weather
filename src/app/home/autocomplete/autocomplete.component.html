@@ -1,0 +1,75 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-12 col-lg-5">
+      <div class="row">
+        <div class="col-12">
+          <!-- Search -->
+          <div class="card">
+            <div class="cart-myTitle">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              {{form.title}}:
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                  <input 
+                    [placeholder]="form.title"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="off"
+                    type="text"
+                    class="form-control form-control-lg"
+                    #search
+                    [formControl]="searchControl"
+                    size="100">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <!-- Settings map -->
+          <div class="card settingsMap">
+            <div class="cart-title" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" (click)="onToggleSettingsMap()">
+              <p class="title">{{settingsMap.title}}</p>
+              <div class="arrow">
+                <i class="fa fa-arrow-up" aria-hidden="true" *ngIf="!toggleSettingsMap" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
+                <i class="fa fa-arrow-down" aria-hidden="true" *ngIf="toggleSettingsMap" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
+              </div>
+            </div>
+            <div class="card-body collapse" id="collapseExample">
+              <div class="form-group">
+                <label for="mapTypeId">{{settingsMap.mapType}}:</label>
+                <select [(ngModel)]="mapTypeId" class="form-control" (ngModelChange)="onMapTypeId()">
+                  <option *ngFor="let obj of mapTypesArr" [value]="obj.type">{{obj[lang]}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <div>{{settingsMap.scrollWheelMap}}:</div>
+                <div class="custom-control custom-radio custom-control-inline" *ngFor="let obj of scrollwheelsArr">
+                  <input type="radio" [id]="obj.en" name="scrollwheel" class="custom-control-input" (click)="onScrollwheel(obj)" [checked]="obj.type === scrollwheel">
+                  <label class="custom-control-label" [for]="obj.en">{{obj[lang]}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-12 col-lg-7">
+      <app-current-day></app-current-day>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="scrollwheel" [zoom]="zoom" [mapTypeId]="mapTypeId" [usePanning]="'true'" class="stylesMap">
+          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+
+</div>

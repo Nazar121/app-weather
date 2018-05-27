@@ -22,6 +22,11 @@
                 "error_required": "The field is required",
                 "error_wrong": "Please enter characters from \"Latin alphabet\""
             },
+            "settingsMap": {
+                "title": "Settings map",
+                "mapType": "Map type",
+                "scrollWheelMap": "Scrolling the map, mouse wheel"
+            },
             "currentDay": {
                 "max": "Max.",
                 "min": "Min.",

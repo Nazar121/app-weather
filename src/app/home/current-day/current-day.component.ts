@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 // store
 import { Store } from '@ngrx/store';
 import { AppState } from '../../redux/app.state';
 import { ChangeLan } from '../../redux/lang.action';
+import { ChangeLocation } from '../../redux/location/location.action'; 
 
 // services
 import { WeatherService } from '../../services/weather.service';
@@ -17,17 +18,16 @@ import { LangService } from '../../services/lang.service';
 })
 export class CurrentDayComponent implements OnInit {
 
-  @Input() search: any;
-
   // dictionary data
   dictionaryDay: any;
   days: any;
   months: any;
   noResponse: any;
 
-  // search
-  searchCity: string;
-  countryCode: string;
+  // location
+  location: any;
+
+  // lang
   lang: string;
 
   // current day
@@ -56,9 +56,6 @@ export class CurrentDayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchCity = this.search.searchCity;
-    this.countryCode = this.search.countryCode;
-
     // listening language
     this.store.select('language').subscribe(res => {
       this.lang = res.lang;
@@ -67,12 +64,16 @@ export class CurrentDayComponent implements OnInit {
         this.days = res.date.days;
         this.months = res.date.months;
         this.noResponse = res.noResponse;
-        // console.log(this.days);
 
-        // GET weather on day
-        this.search['lang'] = this.lang;
-        this.onCurrentDayWeather(this.search);
+        this.store.dispatch(new ChangeLocation(Object.assign({}, this.location, {lang: this.lang})));
       });
+    });
+
+    // listening language
+    this.store.select('location').subscribe(res => {
+      this.location = res;
+      this.weatherService.setWeather(this.location);
+      this.onCurrentDayWeather(this.location);
     });
 
   }

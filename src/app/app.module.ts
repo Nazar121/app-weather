@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 // redux
 import { StoreModule } from '@ngrx/store';
 import { langReducer } from './redux/lang.reducer';
+import { locationReducer } from './redux/location/location.reducer';
 
 // ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,7 +32,10 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    StoreModule.forRoot({language: langReducer})
+    StoreModule.forRoot({
+      language: langReducer,
+      location: locationReducer
+    })
   ],
   providers: [LangService],
   bootstrap: [AppComponent]

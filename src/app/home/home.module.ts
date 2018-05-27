@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// agm
+import { AgmCoreModule } from '@agm/core';
 
 // ng2-chars
 import { ChartsModule } from 'ng2-charts';
@@ -11,12 +14,14 @@ import { SharedModule } from '../shared/shared.module';
 
 // services
 import { WeatherService } from '../services/weather.service';
+import { AutocompleteService } from '../services/autocomplete.service'; 
 
 // components
 import { HomeComponent } from './home.component';
 import { FiveDaysComponent } from './five-days/five-days.component';
 import { CurrentDayComponent } from './current-day/current-day.component';
 import { SearchComponent } from './search/search.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 const ROUTES: Routes = [
   { path: '', component: HomeComponent }
@@ -28,7 +33,12 @@ const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     ChartsModule,
     FormsModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBYCMDQc5Jtow1QUVUgdxSchuxjw7m-PuY',
+      libraries: ["places"]
+    }),
   ],
   exports: [
     RouterModule
@@ -37,10 +47,12 @@ const ROUTES: Routes = [
     HomeComponent,
     FiveDaysComponent,
     CurrentDayComponent,
-    SearchComponent
+    SearchComponent,
+    AutocompleteComponent
   ],
   providers: [
-    WeatherService
+    WeatherService,
+    AutocompleteService
   ]
 })
 export class HomeModule { }

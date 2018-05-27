@@ -7,6 +7,7 @@ import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../redux/app.state';
 import { ChangeLan } from '../../redux/lang.action';
+import { ChangeLocation } from '../../redux/location/location.action';
 
 // services
 import { WeatherService } from '../../services/weather.service';
@@ -21,11 +22,6 @@ import { LangService } from '../../services/lang.service';
 export class FiveDaysComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
-
-  @Input() search: any;
-
-  searchCity: string;
-  countryCode: string;
 
   // lineChart
   // public lineChartData: Array<any> = [[6, 10, 0, -0, -1]];
@@ -49,6 +45,9 @@ export class FiveDaysComponent implements OnInit {
   // Not res
   errorRes: boolean = false;
 
+  // location
+  location: any;
+
   // data dictionary
   lang: string;
   days: any;
@@ -64,8 +63,6 @@ export class FiveDaysComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchCity = this.search.searchCity;
-    this.countryCode = this.search.countryCode;
 
      // listening language
      this.store.select('language').subscribe(res => {
@@ -77,8 +74,13 @@ export class FiveDaysComponent implements OnInit {
         this.someDays = res.pages.home.someDays;
         this.chartWords = res.pages.home.chart;
         this.noResponse = res.noResponse;
-        this.fiveDaysWeather(this.search);
       });
+    });
+
+    // listening language
+    this.store.select('location').subscribe(res => {
+      this.location = res;
+      this.fiveDaysWeather(this.location);
     });
 
   }
@@ -98,11 +100,10 @@ export class FiveDaysComponent implements OnInit {
   // weather on 5 days
   fiveDaysWeather(search) {
     this.arrDays = [];
-    search['lang'] = this.lang;
-    // console.log(search);
     this.weatherService.fiveDaysWeather(search).
       subscribe(
         data => {
+          this.arrDays = [];
           this.errorRes = false;
           this.data = data;
           this.city = this.data.city.name;

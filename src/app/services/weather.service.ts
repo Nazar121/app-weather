@@ -20,19 +20,17 @@ export class WeatherService {
         obj.lang;
         break;
     }
-    const city = obj.searchCity;
-    const countryCode = obj.countryCode;
+    const formatted_address = obj.formatted_address;
     const units = 'units=metric';
     const lang = `lang=${obj.lang.toLowerCase()}`;
     const appid = 'APPID=6b16f4a9bc410f8962909f0dbd2b6649';
-    return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&${units}&${lang}&${appid}`)
+    return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${formatted_address}&${units}&${lang}&${appid}`)
         .map(res => res)
         .catch(error => Observable.throw(error.json()));
   }
 
   // GET some days weather
   fiveDaysWeather(obj: any) {
-
     switch(obj.lang.toLowerCase()){
       case 'uk':
         obj.lang = 'ua';
@@ -40,41 +38,13 @@ export class WeatherService {
       default:
         break;
     }
-
-    const city = obj.searchCity;
-    const countryCode = obj.countryCode;
+    const formatted_address = obj.formatted_address;
     const units = 'units=metric';
     const lang = `lang=${obj.lang.toLowerCase()}`;
     const appid = 'APPID=6b16f4a9bc410f8962909f0dbd2b6649';
-    return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&${units}&${lang}&${appid}`)
+    return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?q=${formatted_address}&${units}&${lang}&${appid}`)
         .map(res => res)
         .catch(error => Observable.throw(error.json()));
-  }
-
-  // GET all list countries
-  getCountryList() {
-    return this.http.get('../../assets/json/country.list.json')
-      .map(res => res)
-      .catch(error => Observable.throw(error.json()));
-  }
-
-  // GET all list cities
-  getCityList(searchCountry) {
-    let allCities: any;
-    let cityList: any = [];
-    return this.http.get('../../assets/json/city.list.json')
-      .map(res => {
-        {
-          allCities = res;
-          allCities.map(obj => {
-            if ( obj.country === searchCountry.code ) {
-              cityList.push(obj);
-            }
-          });
-          return cityList;
-        }
-      })
-      .catch(error => Observable.throw(error.json()));
   }
 
   // SET weather to SessionStorage 
@@ -86,5 +56,11 @@ export class WeatherService {
   getWeather() {
     return JSON.parse(sessionStorage.getItem('weather'));
   }
+
+  // geocode(data) {
+  //   return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${data.lat},${data.lng}&location_type=APPROXIMATE&result_type=locality&language=en-US&key=AIzaSyBYCMDQc5Jtow1QUVUgdxSchuxjw7m-PuY`)
+  //       .map(res => res)
+  //       .catch(error => Observable.throw(error.json()));
+  // }
 
 }

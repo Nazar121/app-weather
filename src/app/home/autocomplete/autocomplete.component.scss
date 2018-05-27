@@ -1,0 +1,32 @@
+@import '../../scss/utils/variables';
+@import '../../scss/utils/mixins';
+
+.title {
+    @extend .title;
+}
+
+input, select {
+    cursor: pointer;
+}
+
+.settingsMap {
+    text-align: left;
+    .cart-title {
+        cursor: pointer;
+        &:hover .arrow i {
+            @include transition(.3s);
+            transform: scale(1.2);
+        }
+    }
+    .arrow {
+        text-align: center;
+        i {
+            font-size: 40px;
+            color: $bg-theme;
+        }
+    }
+}
+
+.stylesMap {
+    height: 450px;
+}
