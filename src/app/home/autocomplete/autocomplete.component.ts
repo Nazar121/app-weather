@@ -185,14 +185,16 @@ export class AutocompleteComponent implements OnInit {
   initialisationSettingsMap() {
     let settings = this.autocompleteService.getSettingsMap();
     if ( !settings ) {
-      this.autocompleteService.setSettingsMap({
-        scrollwheel: 'roadmap',
-        mapTypeId: true
-      });
-      settings = this.autocompleteService.getSettingsMap();
+      settings = {
+        scrollwheel: true,
+        mapTypeId: 'roadmap'
+      };
+      this.autocompleteService.setSettingsMap(settings);
+      // settings = this.autocompleteService.getSettingsMap();
     }
     this.mapTypeId = settings.mapTypeId;
     this.scrollwheel = settings.scrollwheel;
+    console.log('SETTING mapTypeId', this.mapTypeId);
   }
 
 }

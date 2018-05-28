@@ -53,7 +53,8 @@
                 "category": "Category"                
             },
             "modal": {
-                "message": "This service does not allow you to translate these news into other languages !!!"
+                "message": "This service does not allow you to translate these news into other languages !!!",
+                "close": "Close"
             },
             "news": "News",
             "more": "More"
