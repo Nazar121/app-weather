@@ -84,7 +84,7 @@ export class AutocompleteComponent implements OnInit {
       });
     });
 
-    // listening language
+    // listening location
     this.store.select('location').subscribe(res => {
       console.log('REDUX LOCATION ', res);
       // set google maps defaults

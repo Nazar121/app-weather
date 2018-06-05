@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// SEO
+import { Title, Meta } from '@angular/platform-browser';
+
 // store
 import { Store } from '@ngrx/store';
 import { AppState } from '../redux/app.state';
@@ -51,6 +54,8 @@ export class NewsComponent implements OnInit {
   searchCategory: string = 'Business';
 
   constructor(
+    private title: Title,
+    private meta: Meta,
     private langService: LangService,
     private store: Store<AppState>,
     private newsService: NewsService,
@@ -58,6 +63,9 @@ export class NewsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // SEO
+    this.seo();
+
     // listening language
     this.store.select('language').subscribe(res => {
       this.lang = res.lang;
@@ -85,6 +93,17 @@ export class NewsComponent implements OnInit {
 
     this.newsService.removeCurrentNew();
     this.changeSearch();
+  }
+  
+  // SEO
+  seo() {
+    // title
+    this.title.setTitle(`News ${this.searchCountry}, ${this.searchCategory}`);
+    // meta
+    this.meta.addTags([
+      { name: 'description', content: `News in ${this.searchCountry} for a day. Top headline news a day in ${this.searchCountry}.` },
+      { name: 'keywords', content: `news in ${this.searchCountry}, top headline news a day in ${this.searchCountry}, news ${this.searchCountry}, news a day, ${this.searchCountry}, ${this.searchCategory},news, https://weather-com.firebaseapp.com` }
+    ]);
   }
 
   // GET news
@@ -123,6 +142,7 @@ export class NewsComponent implements OnInit {
 
     // console.log('data ', data);
     this.getNews(data);
+    this.seo();
   }
 
   // click on current new

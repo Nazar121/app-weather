@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+// SEO
+import { Title, Meta } from '@angular/platform-browser';
+
 // services
 import { NewsService } from '../../services/news.service';
 
@@ -15,6 +18,8 @@ export class NewComponent implements OnInit {
   paramNewId: string;
 
   constructor(
+    private title: Title,
+    private meta: Meta,
     private newsService: NewsService,
     private router: Router,
     private route: ActivatedRoute
@@ -22,7 +27,7 @@ export class NewComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    
+
     // url Get params
     this.route
     .params
@@ -35,11 +40,23 @@ export class NewComponent implements OnInit {
     this.getCurrentNew();
   }
 
+  // SEO
+  seo() {
+    // title
+    this.title.setTitle(`News: ${this.currentNew.title}`);
+    // meta
+    this.meta.addTags([
+      { name: 'description', content: `News ${this.currentNew.title}.` },
+      { name: 'keywords', content: `news ${this.currentNew.title}, news, news a day, ${this.currentNew.title}, https://weather-com.firebaseapp.com` }
+    ]);
+  }
+
   // Cerrwnt new
   getCurrentNew() {
     this.currentNew = this.newsService.getCurrentNew();
     if (this.currentNew && this.paramNewId === this.currentNew.id) {
-      // console.log('currentNew ', this.currentNew);
+      // SEO
+      this.seo();
     } else {
       this.router.navigate([`/news`]);
     }
